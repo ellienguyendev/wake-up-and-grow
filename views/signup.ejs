@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Wake Up and Grow</title>
+  <link href="https://fonts.googleapis.com/css?family=Zhi+Mang+Xing|Roboto+Condensed|Oswald|Shadows+Into+Light&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+  <header class="textCenter">
+    <h1>- Wake Up and Grow -</h1>
+    <h2>Sign Up and Grow:</h2>
+  </header>
+  <div class="container">
+
+    <div class="quote floatLeft">
+      <h3>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</h3>
+    </div>
+
+    <div class="login floatLeft">
+      <% if (message.length > 0) { %>
+      <div class="alert alert-danger"><%= message %></div>
+      <% } %>
+      <!-- SIGNUP FORM -->
+      <form action="/signup" method="post">
+          <div class="form-group">
+              <label>Email</label>
+              <input type="text" class="form-control" name="email">
+          </div>
+          <div class="form-group">
+              <label>Password</label>
+              <input type="password" class="form-control" name="password">
+          </div>
+
+          <button type="submit" class="btn btn-warning btn-lg">Signup</button>
+      </form>
+
+      <p>Already have an account? <a href="/login">Login</a></p>
+      <p>Or go <a href="/">home</a>.</p>
+    </div>
+  </div>
+</body>
+
+</html>

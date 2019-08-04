@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Wake Up and Grow</title>
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <link href="https://fonts.googleapis.com/css?family=Zhi+Mang+Xing|Roboto+Condensed|Oswald|Shadows+Into+Light&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+  <!-- Navigation -->
+  <header class="textCenter">
+    <div class="topLinks">
+      <% if (user.local.email) { %>
+      <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+      <% if (user.local.email) { %>
+      <a href="/unlink/local" class="btn btn-default">Unlink</a>
+      <% } else { %>
+      <a href="/connect/local" class="btn btn-default">Connect Local</a>
+      <% } %>
+      <% } %>
+    </div>
+
+    <h1>- Wake Up and Grow -</h1>
+    <h2>Welcome, <%= user.local.email %></h2>
+  </header>
+
+  <!-- Main -->
+  <section class="container">
+    <div class="why">
+      <h3>What's Your Why?</h3>
+      <form action="/why" method="POST">
+        <input type="text" name="why" placeholder="What are you pushing yourself to do / be...">
+        <button type="submit" name="whyButton">Submit</button>
+      </form>
+    </div>
+
+    <div class="goals">
+      <h3>Goals</h3>
+      <form action="/goals" method="POST">
+        <input type="text" name="goal1" placeholder="goal 1">
+        <input type="text" name="time1" placeholder="time">
+        <input type="text" name="goal2" placeholder="goal 2">
+        <input type="text" name="time2" placeholder="time">
+        <input type="text" name="goal3" placeholder="goal 3">
+        <input type="text" name="time3" placeholder="time">
+        <button type="submit" name="goalsButton">Submit</button>
+      </form>
+    </div>
+  </section>
+
+<script type="text/javascript" src="main.js"></script>
+
+</body>
