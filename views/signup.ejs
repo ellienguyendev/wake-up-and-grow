@@ -10,9 +10,8 @@
 <body>
   <header class="textCenter">
     <h1>- Wake Up and Grow -</h1>
-    <h2>Sign Up and Grow:</h2>
   </header>
-  <div class="container">
+  <div class="container clearfix">
 
     <div class="quote floatLeft">
       <h3>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</h3>
@@ -24,13 +23,24 @@
       <% } %>
       <!-- SIGNUP FORM -->
       <form action="/signup" method="post">
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" class="form-control" name="name" placeholder="Enter Your Name">
+        </div>
+
+        <div class="form-group">
+            <label>Phone Number</label>
+            <input type="text" class="form-control" name="number" placeholder="No Spaces Please!">
+        </div>
+
           <div class="form-group">
               <label>Email</label>
-              <input type="text" class="form-control" name="email">
+              <input type="text" class="form-control" name="email" placeholder="Enter Your Email">
           </div>
+
           <div class="form-group">
               <label>Password</label>
-              <input type="password" class="form-control" name="password">
+              <input type="password" class="form-control" name="password" placeholder="Enter Your Password">
           </div>
 
           <button type="submit" class="btn btn-warning btn-lg">Signup</button>

@@ -112,6 +112,7 @@ h2 {
 /* CONTAINER */
 .container {
   width: 100%;
+  margin-bottom: 50px;
 }
 
 .quote {
@@ -161,7 +162,6 @@ button:focus {
   outline: 0px solid #91a693;
 }
 
-
 button {
   font-size: 18px;
   color: #fff;
@@ -169,4 +169,8 @@ button {
   background-color: #91a693;
   border-radius: 10px;
   text-transform: uppercase;
+}
+
+a:last-of-type {
+  margin-bottom: 100px;
 }

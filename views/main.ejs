@@ -4,6 +4,7 @@
 <head>
   <title>Wake Up and Grow</title>
   <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="vc.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
   <link href="https://fonts.googleapis.com/css?family=Zhi+Mang+Xing|Roboto+Condensed|Oswald|Shadows+Into+Light&display=swap" rel="stylesheet">
 </head>
@@ -24,33 +25,233 @@
     </div>
 
     <h1>- Wake Up and Grow -</h1>
-    <h2>Welcome, <%= user.local.email %></h2>
+    <h2><span class="time"></span></h2>
   </header>
 
   <!-- Main -->
-  <section class="container">
-    <div class="why">
-      <h3>What's Your Why?</h3>
-      <form action="/why" method="POST">
-        <input type="text" name="why" placeholder="What are you pushing yourself to do / be...">
-        <button type="submit" name="whyButton">Submit</button>
-      </form>
-    </div>
+  <div class="calendar main floatLeft">
 
-    <div class="goals">
-      <h3>Goals</h3>
-      <form action="/goals" method="POST">
-        <input type="text" name="goal1" placeholder="goal 1">
-        <input type="text" name="time1" placeholder="time">
-        <input type="text" name="goal2" placeholder="goal 2">
-        <input type="text" name="time2" placeholder="time">
-        <input type="text" name="goal3" placeholder="goal 3">
-        <input type="text" name="time3" placeholder="time">
-        <button type="submit" name="goalsButton">Submit</button>
-      </form>
+		<div id="v-cal">
+			<div class="vcal-header">
+				<button class="vcal-btn" data-calendar-toggle="previous">
+					<svg height="24" version="1.1" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+						<path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"></path>
+					</svg>
+				</button>
+
+				<div class="vcal-header__label" data-calendar-label="month">
+					March 2017
+				</div>
+
+
+				<button class="vcal-btn" data-calendar-toggle="next">
+					<svg height="24" version="1.1" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+						<path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"></path>
+					</svg>
+				</button>
+			</div>
+			<div class="vcal-week">
+				<span>Mon</span>
+				<span>Tue</span>
+				<span>Wed</span>
+				<span>Thu</span>
+				<span>Fri</span>
+				<span>Sat</span>
+				<span>Sun</span>
+			</div>
+			<div class="vcal-body" data-calendar-area="month"></div>
+		</div>
+
+		<p class="demo-picked">
+			Date picked:
+			<span data-calendar-label="picked"></span>
+		</p>
+
+  </div>
+
+  <div class="goals main floatLeft">
+    <span class="dateDis">Today is: <span class="date"></span></span>
+    <span><i class="fas fa-plus"></i></span>
+
+    <!-- Form comes up when clicking + button -->
+    <form action="/goals" method="POST" class="form hide">
+      <div class="goal1">
+        <p>One</p>
+        <input type="text" name="goal1" class="goal1Val medLength" placeholder="goal 1" value="">
+        <select name="time1">
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+
+        <select name="time1">
+          <option value="00">00</option>
+          <option value="05">05</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+          <option value="20">20</option>
+          <option value="25">25</option>
+          <option value="30">30</option>
+          <option value="35">35</option>
+          <option value="40">40</option>
+          <option value="45">45</option>
+          <option value="50">50</option>
+          <option value="55">55</option>
+        </select>
+
+        <select name="time1">
+          <option value="AM">AM</option>
+          <option value="PM">PM</option>
+        </select>
+        <input type="text" name="why1" class="fullLength" placeholder="write something to motivate yourself">
+      </div>
+
+      <div class="goal2">
+        <p>Two</p>
+        <input type="text" name="goal2" class="medLength goal2Val" placeholder="goal 2" value="">
+        <select name="time2">
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+
+        <select name="time2">
+          <option value="00">00</option>
+          <option value="05">05</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+          <option value="20">20</option>
+          <option value="25">25</option>
+          <option value="30">30</option>
+          <option value="35">35</option>
+          <option value="40">40</option>
+          <option value="45">45</option>
+          <option value="50">50</option>
+          <option value="55">55</option>
+        </select>
+
+        <select name="time2">
+          <option value="AM">AM</option>
+          <option value="PM">PM</option>
+        </select>
+        <input type="text" name="why2" class="fullLength" placeholder="write something to motivate yourself">
+      </div>
+
+      <div class="goal3">
+        <p>Three</p>
+        <input type="text" name="goal3" class="medLength goal3Val" placeholder="goal 3" value="">
+        <select name="time3">
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+
+        <select class="time3Min" name="time3">
+          <option value="00">00</option>
+          <option value="05">05</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+          <option value="20">20</option>
+          <option value="25">25</option>
+          <option value="30">30</option>
+          <option value="35">35</option>
+          <option value="40">40</option>
+          <option value="45">45</option>
+          <option value="50">50</option>
+          <option value="55">55</option>
+        </select>
+
+        <select class="time3" name="time3">
+          <option value="AM">AM</option>
+          <option value="PM">PM</option>
+        </select>
+        <input type="text" name="why3" class="fullLength" placeholder="write something to motivate yourself">
+      </div>
+
+      <button type="submit" class="goalsButton">Boom</button>
+      <button type="button" class="cancel">cancel</button>
+    </form>
+
+    <!-- Display most recent goal from database -->
+    <div class="results">
+      <% if (main.length > 0 ) { %>
+        <% let last = main.length-1 %>
+
+        <% let completed1 = '000' %>
+        <% let completed2 = '000' %>
+        <% let completed3 = '000' %>
+        <% if (main[last].g1done === true) { %>
+          <%  completed1 = '698058' %>
+        <% } %>
+        <% if (main[last].g2done === true){ %>
+            <% completed2 = '70847B' %>
+        <% } %>
+        <% if (main[last].g3done === true){ %>
+            <% completed3 = 'ADBD77' %>
+        <% } %>
+
+        <span><i class="fab fa-pagelines g1Leaf" style="color:#<%= completed1 %>"></i></span>
+        <span class="goal1Hr"><%= main[last].time1[0] %></span>:<span class="goal1Min"><%= main[last].time1[1] %></span><span><%= main[last].time1[2] %> | </span>
+        <span class="g1"><%= main[last].goal1 %></span>
+        <p><%= main[last].why1 %></p>
+
+        <span><i class="fab fa-pagelines g2Leaf" style="color:#<%= completed2 %>"></i></span>
+        <span class="goal2Hr"><%= main[last].time2[0] %></span>:<span class="goal2Min"><%= main[last].time2[1] %></span><span><%= main[last].time2[2] %> | </span>
+        <span class="g2"><%= main[last].goal2 %></span>
+        <p><%= main[last].why2 %></p>
+
+        <span><i class="fab fa-pagelines g3Leaf" style="color:#<%= completed3 %>"></i></span>
+        <span class="goal3Hr"><%= main[last].time3[0] %></span>:<span class="goal3Min"><%= main[last].time3[1] %></span><span><%= main[last].time3[2] %> | </span>
+        <span class="g3"><%= main[last].goal3 %></span>
+        <p><%= main[last].why3 %></p>
+
+        <span class="last">You set these goals on: <span class="setDate"><%= main[last].date %></span></span>
+
+        <span><i class="far fa-trash-alt"></i></span>
+        <span><i class="fas fa-download"></i></span>
+
+
+      <% } %>
     </div>
+  </div>
+
+
   </section>
 
-<script type="text/javascript" src="main.js"></script>
-
+  <script type="text/javascript" src="main.js"></script>
+  <script type="text/javascript" src="vanillaCalendar.js"></script>
+  <script>
+  window.addEventListener('load', function () {
+    vanillaCalendar.init({
+      disablePastDays: true
+    });
+  })
+</script>
 </body>
