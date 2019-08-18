@@ -1,0 +1,62 @@
+/* POST FILTERS LIST */
+.viewPostsList {
+  float: right;
+}
+.viewPostsList ul {
+  list-style-type: none;
+  padding-top: 60px;
+  margin-bottom: 50px;
+}
+
+.viewPostsList li {
+  float: left;
+}
+
+.viewPostsList li {
+  margin-left: 20px;
+}
+
+.feedContainer {
+  width: 100%;
+}
+
+.postFromFeed {
+  width: 50%;
+}
+
+.allPosts {
+  width: 50%;
+  display: flex;
+  flex-direction: column-reverse;
+  margin-bottom: 50px;
+}
+
+.userPost {
+  border-bottom: 2px solid #e2e2e2;
+  padding: 4% 0;
+}
+
+.proPic {
+  width: 30px;
+  height: 30px;
+}
+
+h2 {
+  margin: 9px 0 0 12px;
+  display: inline-block;
+  width: 40%;
+  font-size: 20px;
+}
+
+.feedMsg {
+  padding: 5% 2%;
+  font-size: 22px;
+}
+
+.postBottom {
+  padding: 0 2%;
+}
+
+.userPost form {
+  margin-top: 15px;
+}

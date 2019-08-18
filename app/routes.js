@@ -1,61 +1,120 @@
-module.exports = function(app, passport, db, ObjectId) {
+module.exports = function(app, passport, db, multer, ObjectId, Nexmo) {
 
   // normal routes ===============================================================
 
-    // HOMEPAGE SECTION =========================
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth() + 1;
+  var yyyy = today.getFullYear();
+  var date = mm + '/' + dd + '/' + yyyy;
+
+  var hr = today.getHours()
+  if (hr > 12) {
+    hr = hr - 12
+  } else if (hr === 0) {
+    hr = 12
+  } else if (hr < 10) {
+    hr = '0' + hr
+  }
+
+  var mins = today.getMinutes()
+  if (mins < 10) {
+    mins = '0' + mins
+  }
+
+  var ampm = (today.getHours()) < 12 ? 'AM' : 'PM';
+  var time = hr.toString() + ':' + mins + ampm
+
+  // HOMEPAGE =========================
   app.get('/', function(req, res) {
     res.render('index.ejs');
   });
 
-
-  // MAIN SECTION =========================
-  app.get('/main', isLoggedIn, function(req, res) {
+  // MAIN GOALS PAGE =========================
+  app.get('/main', function(req, res) {
     var uId = ObjectId(req.session.passport.user)
-    var uName
-    db.collection('users').find({"_id": uId}).toArray((err, result) => {
+    db.collection('main').find({
+      "userId": uId
+    }).toArray((err, result) => {
       if (err) return console.log(err)
-      uName = result[0].local.name
-      db.collection('main').find({"name": uName}).toArray((err, result) => {
-        if (err) return console.log(err)
-        res.render('main.ejs', {
-          user : req.user,
-          main: result
-        })
+      res.render('main.ejs', {
+        user: req.user,
+        main: result
       })
+    })
+  });
+
+  //---------------------------------------
+  // IMAGE CODE
+  //---------------------------------------
+  var storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, 'public/images/uploads')
+    },
+    filename: (req, file, cb) => {
+      cb(null, file.fieldname + '-' + Date.now() + ".png")
+    }
+  });
+  var upload = multer({
+    storage: storage
+  });
+
+  app.post('/uploadProPic', upload.single('file-to-upload'), (req, res, next) => {
+    insertDocuments(db, req, 'images/uploads/' + req.file.filename, () => {
+      res.redirect('/main')
     });
   });
 
-  var today = new Date();
-  var dd = today.getDate();
-  var mm = today.getMonth()+1;
-  var yyyy = today.getFullYear();
-  date = mm + '/' + dd + '/' + yyyy;
+  var insertDocuments = function(db, req, filePath, callback) {
+    var collection = db.collection('users');
+    var uId = ObjectId(req.session.passport.user)
+    collection.findOneAndUpdate({
+      "_id": uId
+    }, {
+      $set: {
+        "local.imageUrl": filePath
+      }
+    }, {
+      sort: {
+        _id: -1
+      },
+      upsert: false
+    }, (err, result) => {
+      if (err) return res.send(err)
+      callback(result)
+    })
+  }
 
-//POST goals to database
+  //POST goals to database
   app.post('/goals', (req, res) => {
     var uId = ObjectId(req.session.passport.user)
+    var name
     var uName
     db.collection('users').find({
       "_id": uId
     }).toArray((err, result) => {
       if (err) return console.log(err)
-      uName = result[0].local.name
+      name = result[0].local.name
+      username = result[0].local.username
       db.collection('main').save({
-        name: uName,
+        name: name,
+        username: username,
+        userId: uId,
         date: date,
         goal1: req.body.goal1,
-        g1done: false,
-        time1: req.body.time1,
         why1: req.body.why1,
+        time1: req.body.time1,
+        g1Count: 0,
+
         goal2: req.body.goal2,
-        g2done: false,
-        time2: req.body.time2,
         why2: req.body.why2,
+        time2: req.body.time2,
+        g2Count: 0,
+
         goal3: req.body.goal3,
-        g3done: false,
-        time3: req.body.time3,
         why3: req.body.why3,
-        archived: false
+        time3: req.body.time3,
+        g3Count: 0
       }, (err, result) => {
         if (err) return console.log(err)
         console.log('saved to database')
@@ -64,72 +123,265 @@ module.exports = function(app, passport, db, ObjectId) {
     })
   })
 
-//DELETE GOALS
-  app.delete('/deletePost', (req, res) => {
+  //MARK GOALS AS COMPLETED
+  app.put('/g1Done', (req, res) => {
+    var uId = ObjectId(req.session.passport.user)
+    db.collection('main')
+      .findOneAndUpdate({
+        userId: uId,
+        date: req.body.date,
+        goal1: req.body.goal1
+      }, {
+        $set: {
+          'g1Count': req.body.g1Count + 1
+        }
+      }, {
+        sort: {
+          _id: -1
+        },
+        upsert: false
+      }, (err, result) => {
+        if (err) return res.send(err)
+        res.send(result)
+      })
+  })
+
+  app.put('/g2Done', (req, res) => {
+    var uId = ObjectId(req.session.passport.user)
+    db.collection('main')
+      .findOneAndUpdate({
+        userId: uId,
+        date: req.body.date,
+        goal2: req.body.goal2
+      }, {
+        $set: {
+          'g2Count': req.body.g2Count + 1
+        }
+      }, {
+        sort: {
+          _id: -1
+        },
+        upsert: false
+      }, (err, result) => {
+        if (err) return res.send(err)
+        res.send(result)
+      })
+  })
+
+  app.put('/g3Done', (req, res) => {
+    var uId = ObjectId(req.session.passport.user)
+    db.collection('main')
+      .findOneAndUpdate({
+        userId: uId,
+        date: req.body.date,
+        goal3: req.body.goal3
+      }, {
+        $set: {
+          'g3Count': req.body.g3Count + 1
+        }
+      }, {
+        sort: {
+          _id: -1
+        },
+        upsert: false
+      }, (err, result) => {
+        if (err) return res.send(err)
+        res.send(result)
+      })
+  })
+
+  //DELETE GOALS
+  app.delete('/deleteGoal', (req, res) => {
+    var uId = ObjectId(req.session.passport.user)
     db.collection('main').findOneAndDelete({
-      date: date
+      userId: uId,
+      date: req.body.date,
+      goal1: req.body.goal1,
+      goal2: req.body.goal2,
+      goal3: req.body.goal3
     }, (err, result) => {
       if (err) return res.send(500, err)
       res.send('Message deleted!')
     })
   })
 
-//MARK GOALS AS COMPLETED
-  app.put('/g1Done', (req, res) => {
-    db.collection('main')
-    .findOneAndUpdate({date: req.body.date, goal1: req.body.goal1 }, {
-      $set: {
-        'g1done': true
-      }
-    }, {
-      sort: {_id: -1},
-      upsert: true
-    }, (err, result) => {
-      if (err) return res.send(err)
-      res.send(result)
+
+  // FEED PAGE ====================
+  app.get('/feed', isLoggedIn, function(req, res) {
+    db.collection('feed').find({
+      // for reference for later page (find by querying username)
+    }).toArray((err, result) => {
+      if (err) return console.log(err)
+      res.render('feed.ejs', {
+        user: req.user,
+        feed: result
+      })
+    })
+  });
+
+  app.get('/favorites', isLoggedIn, function(req, res) {
+    db.collection('feed').find({
+      // for reference for later page (find by querying username)
+    }).toArray((err, result) => {
+      if (err) return console.log(err)
+      res.render('favorites.ejs', {
+        user: req.user,
+        feed: result
+      })
+    })
+  });
+
+  app.post('/sendComment', isLoggedIn, function(req, res) {
+    var currentUser = req.body.currentUser
+    var userPosted = req.body.userPosted
+    var userPostedNum
+    var comment = `Love from ${currentUser}: ${req.body.comment}`
+
+    db.collection('users').find({
+      "local.username": userPosted
+    }).toArray((err, result) => {
+      if (err) return console.log(err)
+      userPostedNum = '1' + result[0].local.number
+
+      nexmo.message.sendSms(
+        '19592065428', userPostedNum, comment, {
+          type: 'unicode'
+        },
+        (err, result) => {
+          if (err) return console.log(err)
+          console.log('did not send text')
+        })
+    })
+  });
+
+  app.put('/updateComment', (req, res) => {
+    db.collection('feed')
+      .findOneAndUpdate({
+        userPosted: req.body.userPosted,
+        feedMsg: req.body.feedMsg,
+        feedDate: req.body.feedDate
+      }, {
+        $addToSet: {
+          comments: [req.body.currentUser, req.body.comment]
+        }
+      }, {
+        sort: {
+          _id: -1
+        },
+        upsert: true
+      }, (err, result) => {
+        if (err) return res.send(err)
+        res.send(result)
+      })
+  })
+
+  app.post('/postFromHome', (req, res) => {
+    var uId = ObjectId(req.session.passport.user)
+    var uName
+    var proPic
+    db.collection('users').find({
+      "_id": uId
+    }).toArray((err, result) => {
+      if (err) return console.log(err)
+      uName = result[0].local.username
+      proPic = result[0].local.imageUrl
+      db.collection('feed').save({
+        userPostedId: uId,
+        userPosted: uName,
+        userProPic: proPic,
+        feedMsg: req.body.feedMsg,
+        feedDate: date + ' ' + time,
+        favoritedBy: [],
+        comments: []
+      }, (err, result) => {
+        if (err) return console.log(err)
+        console.log('saved to database')
+        res.redirect('/main')
+      })
     })
   })
 
-  app.put('/g2Done', (req, res) => {
-    db.collection('main')
-    .findOneAndUpdate({date: req.body.date, goal2: req.body.goal2 }, {
-      $set: {
-        'g2done': true
-      }
-    }, {
-      sort: {_id: -1},
-      upsert: true
-    }, (err, result) => {
-      if (err) return res.send(err)
-      res.send(result)
+  app.post('/postFromFeed', (req, res) => {
+    var uId = ObjectId(req.session.passport.user)
+    var uName
+    var proPic
+    db.collection('users').find({
+      "_id": uId
+    }).toArray((err, result) => {
+      if (err) return console.log(err)
+      uName = result[0].local.username
+      proPic = result[0].local.imageUrl
+      db.collection('feed').save({
+        userPostedId: uId,
+        userPosted: uName,
+        userProPic: proPic,
+        feedMsg: req.body.feedMsg,
+        feedDate: date + ' ' + time,
+        favoritedBy: [],
+        comments: []
+      }, (err, result) => {
+        if (err) return console.log(err)
+        console.log('saved to database')
+        res.redirect('/feed')
+      })
     })
   })
 
-  app.put('/g3Done', (req, res) => {
-    db.collection('main')
-    .findOneAndUpdate({date: req.body.date, goal3: req.body.goal3 }, {
-      $set: {
-        'g3done': true
-      }
-    }, {
-      sort: {_id: -1},
-      upsert: false
-    }, (err, result) => {
-      if (err) return res.send(err)
-      res.send(result)
+  app.put('/favorited', (req, res) => {
+    db.collection('feed')
+      .findOneAndUpdate({
+        userPosted: req.body.userPosted,
+        feedDate: req.body.feedDate,
+        feedMsg: req.body.feedMsg
+      }, {
+        $addToSet: {
+          favoritedBy: req.body.currentUser
+        }
+      }, {
+        sort: {
+          _id: -1
+        },
+        upsert: true
+      }, (err, result) => {
+        if (err) return res.send(err)
+        res.send(result)
+      })
+  })
+
+  app.delete('/deletePost', (req, res) => {
+    var uId = ObjectId(req.session.passport.user)
+    db.collection('feed').findOneAndDelete({
+      userPosted: req.body.userPosted,
+      feedDate: req.body.feedDate,
+      feedMsg: req.body.feedMsg
+    }, {}, (err, result) => {
+      if (err) return res.send(500, err)
+      res.send('Message deleted!')
     })
   })
 
 
-  // PROFILE SECTION =========================
+  // ARCHIVE PAGE ====================
+  app.get('/archive', isLoggedIn, function(req, res) {
+    var uId = ObjectId(req.session.passport.user)
+    db.collection('main').find({
+      "userId": uId
+    }).toArray((err, result) => {
+      if (err) return console.log(err)
+      res.render('archive.ejs', {
+        user: req.user,
+        main: result
+      })
+    })
+  });
+
+
 
   // LOGOUT ==============================
   app.get('/logout', function(req, res) {
     req.logout();
     res.redirect('/');
   });
-
-
   // =============================================================================
   // AUTHENTICATE (FIRST LOGIN) ==================================================
   // =============================================================================
@@ -151,19 +403,91 @@ module.exports = function(app, passport, db, ObjectId) {
   }));
 
   // SIGNUP =================================
-  // show the signup form
   app.get('/signup', function(req, res) {
     res.render('signup.ejs', {
       message: req.flash('signupMessage')
     });
   });
 
-  // process the signup form
-  app.post('/signup', passport.authenticate('local-signup', {
-    successRedirect: '/main', // redirect to the secure profile section
-    failureRedirect: '/signup', // redirect back to the signup page if there is an error
-    failureFlash: true // allow flash messages
-  }));
+  // app.post('/signup', (req, res) => {
+  //   const number = req.body.number
+  //   const firstName = req.body.name
+  //   const welcomeMsg = `Thank you for signing up with Wake Up and Grow, ${firstName}. Happy Blooming`
+  //
+  //   nexmo.message.sendSms(
+  //     '19592065428', number, welcomeMsg, {
+  //       type: 'unicode'
+  //     },
+  //     (err, result) => {
+  //       if (err) return console.log(err)
+  //       console.log('saved to database')
+  //     })
+  // });
+
+  app.post('/signup',
+    passport.authenticate('local-signup', {
+      successRedirect: '/main', // redirect to the secure profile section
+      failureRedirect: '/signup', // redirect back to the signup page if there is an error
+      failureFlash: true // allow flash messages
+    }));
+
+  // NEXMO SMS CODE =========================
+  // Init NEXMO
+  const nexmo = new Nexmo({
+    apiKey: '1a7cfdf4',
+    apiSecret: 'aw6J8A0qDqt579Xo'
+  })
+
+  app.get('/settings', function(req, res) {
+    res.render('settings.ejs')
+  });
+
+  //post number and text message to DB
+  app.post('/textGoal1', (req, res) => {
+    res.send(req.body);
+    const number = req.body.number
+    const msg = req.body.msg
+
+    nexmo.message.sendSms(
+      '19592065428', number, msg, {
+        type: 'unicode'
+      },
+      (err, result) => {
+        if (err) return console.log(err)
+        console.log('saved to database')
+      })
+  });
+
+  app.post('/textGoal2', (req, res) => {
+    res.send(req.body);
+    const number = req.body.number
+    const msg = req.body.msg
+
+    nexmo.message.sendSms(
+      '19592065428', number, msg, {
+        type: 'unicode'
+      },
+      (err, result) => {
+        if (err) return console.log(err)
+        console.log('saved to database')
+      })
+  });
+
+  app.post('/textGoal3', (req, res) => {
+    res.send(req.body);
+    const number = req.body.number
+    const msg = req.body.msg
+
+    nexmo.message.sendSms(
+      '19592065428', number, msg, {
+        type: 'unicode'
+      },
+      (err, result) => {
+        if (err) return console.log(err)
+        console.log('saved to database')
+      })
+  });
+
 
   // =============================================================================
   // UNLINK ACCOUNTS =============================================================
@@ -181,7 +505,6 @@ module.exports = function(app, passport, db, ObjectId) {
       res.redirect('/main');
     });
   });
-
 };
 
 // route middleware to ensure user is logged in

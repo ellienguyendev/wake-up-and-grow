@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Wake Up and Grow</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <link href="https://fonts.googleapis.com/css?family=Zhi+Mang+Xing|Roboto+Condensed|Oswald|Shadows+Into+Light&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+  <header>
+    <div class="topLinks">
+      <% if (user.local.email) { %>
+      <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+      <% } %>
+    </div>
+
+    <h1>- Wake Up and Grow -</h1>
+
+    <nav>
+      <ul>
+        <a href="/">
+          <li>Home</li>
+        </a>
+        <a href="/main">
+          <li>Goals</li>
+        </a>
+
+        <a href="/main">
+          <li>Profile</li>
+        </a>
+
+        <a href="/feed">
+          <li>Get Inspired</li>
+        </a>
+      </ul>
+    </nav>
+  </header>
+
+
+  <section class="container clear">
+
+
+      <% for (let i=0; i< main.length; i++) { %>
+      <div class="archived floatLeft">
+      <p><%= main[i].date %></p>
+      <span class="clear"><i class="fab fa-pagelines"></i></span>
+      <span><%= main[i].time1[0] %></span>:<span><%= main[i].time1[1] %></span><span><%= main[i].time1[2] %> | </span>
+      <span><%= main[i].goal1 %></span>
+      <p><%= main[i].why1 %></p>
+      <p>Grew: <%= main[i].g1Count %> Days</p>
+
+      <span><i class="fab fa-pagelines"></i></span>
+      <span><%= main[i].time2[0] %></span>:<span><%= main[i].time2[1] %></span><span><%= main[i].time2[2] %> | </span>
+      <span><%= main[i].goal2 %></span>
+      <p><%= main[i].why2 %></p>
+      <p>Grew: <%= main[i].g2Count %> Days</p>
+
+
+      <span><i class="fab fa-pagelines"></i></span>
+      <span><%= main[i].time3[0] %></span>:<span><%= main[i].time3[1] %></span><span><%= main[i].time3[2] %> | </span>
+      <span><%= main[i].goal3 %></span>
+      <p><%= main[i].why3 %></p>
+      <p>Grew: <%= main[i].g3Count %> Days</p>
+
+      <span><i class="far fa-trash-alt"></i></span>
+      </div>
+      <% } %> <!-- end of loop-->
+
+    </section> <!-- end of containing archived goals section -->
+
+</body>

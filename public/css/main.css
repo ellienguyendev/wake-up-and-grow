@@ -78,22 +78,8 @@ a {
   float: left;
 }
 
-.floatRight {
-  float:right;
-}
-
 .textCenter {
   text-align: center;
-}
-
-
-/* HEADER */
-header {
-  width: 100%;
-  background-image: url('img/banner.png');
-  background-size: 100%;
-  background-repeat: no-repeat;
-  margin-bottom: 70px;
 }
 
 .topLinks {
@@ -114,31 +100,16 @@ h1 {
   font-size: 100px;
   letter-spacing: 2px;
   margin-bottom: 30px;
+  text-align: center;
 }
 
 h2 {
+  display: block;
   font-size: 30px;
+  margin: 14px 40% 15px 2%;
 }
 
 /* MAIN */
-section{
-  width: 100%;
-  padding: 5% 100px;
-}
-
-.feature1, .feature2 {
-  margin-bottom: 80px;
-}
-
-.feature {
-  width: 65%;
-}
-
-img {
-  width: 30%;
-  border-radius: 50%;
-}
-
 h4 {
   font-size: 25px;
   border-bottom: 10px solid #91a693;
@@ -146,8 +117,165 @@ h4 {
   margin-bottom: 15px;
 }
 
-/* FOOTER */
-h3 {
-  font-size: 25px;
+.container {
+  width: 100%;
+}
+
+.main {
+  border: 1px solid black;
+  margin-top: 50px;
+  padding: 2%;
+}
+
+.userInfo, .goals {
+  width: 40%;
+  margin-right: 5%;
+}
+
+
+.proPic {
+  width: 50px;
+  height: 50px;
+}
+.propic {
+  width: 120%;
+  border-radius: 50%;
+  border: 3px solid #fff;
+}
+
+.dateDis {
+  display: inline-block;
+  width: 95%;
+  font-size: 18px;
+  margin-bottom: 25px;
+}
+
+/* WHEN FORM ACTIVE */
+form {
+  width: 100%;
+}
+
+.goals p {
+  margin-bottom: 10px;
+}
+
+input {
+  height: 45px;
+  width: 61%;
+  margin: 0 2% 15px 0;
+}
+
+.fullLength{
+  width: 100%;
+}
+
+input::placeholder{
+  color: rgba(0, 0, 0, 0.6);
+}
+
+button, input {
+  padding: 10px;
+}
+
+select{
+  padding: 10px 8px 10px 14px;
+  overflow: hidden;
+  position: relative;
+}
+
+button, input, select {
+  background-color:inherit;
+  border: 1px solid black;
+  border-radius: 5px;
+  font-size: 18px;
+  font-family: 'Oswald', sans-serif;
+}
+
+button:focus, input:focus, select:focus {
+    outline: 1px solid #000;
+}
+
+.goalsButton {
+  width: 100%;
   margin-bottom: 15px;
+}
+
+.cancel {
+  border:none;
+  text-transform: uppercase;
+}
+
+.cancel:focus {
+    outline: 1px solid #fff;
+}
+
+/* WHEN RESULTS ACTIVE */
+.results span{
+  font-size: 25px;
+}
+
+.results p span {
+  font-size: 18px;
+}
+
+.results .last, .results .setDate  {
+  display: inline-block;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.last {
+  margin-top: 15px;
+}
+
+.icons {
+  width: 100%;
+  text-align: center;
+}
+
+.icons .far, .icons .fab {
+  display: block;
+  float:left;
+}
+
+.results .fa-slideshare {
+  margin: 0 40%;
+}
+
+.results .fa-pagelines{
+  font-size: 25px;
+  margin: 10px 3px 5px 0;
+}
+
+.g1Leaf {
+  color: #698058;
+}
+
+.g2Leaf {
+  color: #70847B;
+}
+
+.g3Leaf {
+  color: #ADBD77;
+}
+
+.legend {
+  width: 100%;
+  padding: 5% 8%;
+}
+
+.legendIcons {
+  width: 100%;
+}
+
+.legendIcons li {
+  list-style-type: none;
+  float: left;
+  color: #698058;
+  margin-right: 4%;
+}
+
+
+.hide {
+  display:none;
 }

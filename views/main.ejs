@@ -3,255 +3,251 @@
 
 <head>
   <title>Wake Up and Grow</title>
-  <link rel="stylesheet" href="main.css">
-  <link rel="stylesheet" href="vc.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
   <link href="https://fonts.googleapis.com/css?family=Zhi+Mang+Xing|Roboto+Condensed|Oswald|Shadows+Into+Light&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/main.css">
 </head>
 
-
 <body>
-  <!-- Navigation -->
-  <header class="textCenter">
+  <header>
     <div class="topLinks">
       <% if (user.local.email) { %>
       <a href="/logout" class="btn btn-default btn-sm">Logout</a>
-      <% if (user.local.email) { %>
-      <a href="/unlink/local" class="btn btn-default">Unlink</a>
-      <% } else { %>
-      <a href="/connect/local" class="btn btn-default">Connect Local</a>
-      <% } %>
       <% } %>
     </div>
 
     <h1>- Wake Up and Grow -</h1>
-    <h2><span class="time"></span></h2>
+
+    <nav>
+      <ul>
+        <a href="/main">
+          <li>Home</li>
+        </a>
+
+        <a href="/archive">
+          <li>Archive</li>
+        </a>
+
+        <a href="/profile/<%= user.local.username %>">
+          <li>Profile</li>
+        </a>
+
+        <a href="/feed">
+          <li>Get Inspired</li>
+        </a>
+      </ul>
+    </nav>
   </header>
 
   <!-- Main -->
-  <div class="calendar main floatLeft">
 
-		<div id="v-cal">
-			<div class="vcal-header">
-				<button class="vcal-btn" data-calendar-toggle="previous">
-					<svg height="24" version="1.1" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"></path>
-					</svg>
-				</button>
+  <section class="clearfix container">
 
-				<div class="vcal-header__label" data-calendar-label="month">
-					March 2017
-				</div>
-
-
-				<button class="vcal-btn" data-calendar-toggle="next">
-					<svg height="24" version="1.1" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"></path>
-					</svg>
-				</button>
-			</div>
-			<div class="vcal-week">
-				<span>Mon</span>
-				<span>Tue</span>
-				<span>Wed</span>
-				<span>Thu</span>
-				<span>Fri</span>
-				<span>Sat</span>
-				<span>Sun</span>
-			</div>
-			<div class="vcal-body" data-calendar-area="month"></div>
-		</div>
-
-		<p class="demo-picked">
-			Date picked:
-			<span data-calendar-label="picked"></span>
-		</p>
-
-  </div>
-
-  <div class="goals main floatLeft">
-    <span class="dateDis">Today is: <span class="date"></span></span>
-    <span><i class="fas fa-plus"></i></span>
-
-    <!-- Form comes up when clicking + button -->
-    <form action="/goals" method="POST" class="form hide">
-      <div class="goal1">
-        <p>One</p>
-        <input type="text" name="goal1" class="goal1Val medLength" placeholder="goal 1" value="">
-        <select name="time1">
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-          <option value="11">11</option>
-          <option value="12">12</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-        </select>
-
-        <select name="time1">
-          <option value="00">00</option>
-          <option value="05">05</option>
-          <option value="10">10</option>
-          <option value="15">15</option>
-          <option value="20">20</option>
-          <option value="25">25</option>
-          <option value="30">30</option>
-          <option value="35">35</option>
-          <option value="40">40</option>
-          <option value="45">45</option>
-          <option value="50">50</option>
-          <option value="55">55</option>
-        </select>
-
-        <select name="time1">
-          <option value="AM">AM</option>
-          <option value="PM">PM</option>
-        </select>
-        <input type="text" name="why1" class="fullLength" placeholder="write something to motivate yourself">
+    <section class="userInfo main floatLeft clear">
+      <div class="proPic floatLeft">
+        <img src="/<%= user.local.imageUrl %>" class="propic" alt="Profile Photo">
       </div>
+      <h2 class="floatLeft">Welcome, <span class="firstName"><%= user.local.name %>!</span></h2>
+      <p>Username: <span class="username"><%= user.local.username %></span></p>
+      <p>Phone Number: <span class="phoneNumber"><%= user.local.number %></span></p>
+      <p>Email: <span class="userEmail"><%= user.local.email %></span></p>
+      <p>Update Profile Photo:</p>
+      <form action="/uploadProPic" enctype="multipart/form-data" method="POST">
+        <input type="file" name="file-to-upload" value="">
+        <input type="submit" class="uploadButton" value="Upload">
+      </form>
 
-      <div class="goal2">
-        <p>Two</p>
-        <input type="text" name="goal2" class="medLength goal2Val" placeholder="goal 2" value="">
-        <select name="time2">
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-          <option value="11">11</option>
-          <option value="12">12</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-        </select>
+      <h3>Send a Motivational Message / Affirmation with Friends!</h3>
+      <form action="/postFromHome" method="post">
+        <input type="text" name="feedMsg" value="">
+        <button type="submit" name="feedButton">Boom</button>
+      </form>
+    </section>
 
-        <select name="time2">
-          <option value="00">00</option>
-          <option value="05">05</option>
-          <option value="10">10</option>
-          <option value="15">15</option>
-          <option value="20">20</option>
-          <option value="25">25</option>
-          <option value="30">30</option>
-          <option value="35">35</option>
-          <option value="40">40</option>
-          <option value="45">45</option>
-          <option value="50">50</option>
-          <option value="55">55</option>
-        </select>
 
-        <select name="time2">
-          <option value="AM">AM</option>
-          <option value="PM">PM</option>
-        </select>
-        <input type="text" name="why2" class="fullLength" placeholder="write something to motivate yourself">
-      </div>
 
-      <div class="goal3">
-        <p>Three</p>
-        <input type="text" name="goal3" class="medLength goal3Val" placeholder="goal 3" value="">
-        <select name="time3">
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-          <option value="11">11</option>
-          <option value="12">12</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-        </select>
 
-        <select class="time3Min" name="time3">
-          <option value="00">00</option>
-          <option value="05">05</option>
-          <option value="10">10</option>
-          <option value="15">15</option>
-          <option value="20">20</option>
-          <option value="25">25</option>
-          <option value="30">30</option>
-          <option value="35">35</option>
-          <option value="40">40</option>
-          <option value="45">45</option>
-          <option value="50">50</option>
-          <option value="55">55</option>
-        </select>
 
-        <select class="time3" name="time3">
-          <option value="AM">AM</option>
-          <option value="PM">PM</option>
-        </select>
-        <input type="text" name="why3" class="fullLength" placeholder="write something to motivate yourself">
-      </div>
+    <section class="goals main floatLeft clearfix">
+      <span class="dateDis">Today is: <span class="date"></span></span>
+      <span><i class="fas fa-plus"></i></span>
 
-      <button type="submit" class="goalsButton">Boom</button>
-      <button type="button" class="cancel">cancel</button>
-    </form>
+      <!-- Form comes up when clicking + button -->
+      <form action="/goals" method="POST" class="form hide">
+        <div class="goal1">
+          <p>One</p>
+          <input type="text" name="goal1" class="goal1Val medLength" placeholder="goal 1" value="">
+          <select name="time1">
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
 
-    <!-- Display most recent goal from database -->
-    <div class="results">
-      <% if (main.length > 0 ) { %>
+          <select name="time1">
+            <option value="00">00</option>
+            <option value="05">05</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="25">25</option>
+            <option value="30">30</option>
+            <option value="35">35</option>
+            <option value="40">40</option>
+            <option value="45">45</option>
+            <option value="50">50</option>
+            <option value="55">55</option>
+          </select>
+
+          <select name="time1">
+            <option value="AM">AM</option>
+            <option value="PM">PM</option>
+          </select>
+          <input type="text" name="why1" class="fullLength" placeholder="write something to motivate yourself">
+        </div>
+
+        <div class="goal2">
+          <p>Two</p>
+          <input type="text" name="goal2" class="medLength goal2Val" placeholder="goal 2" value="">
+          <select name="time2">
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+
+          <select name="time2">
+            <option value="00">00</option>
+            <option value="05">05</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="25">25</option>
+            <option value="30">30</option>
+            <option value="35">35</option>
+            <option value="40">40</option>
+            <option value="45">45</option>
+            <option value="50">50</option>
+            <option value="55">55</option>
+          </select>
+
+          <select name="time2">
+            <option value="AM">AM</option>
+            <option value="PM">PM</option>
+          </select>
+          <input type="text" name="why2" class="fullLength" placeholder="write something to motivate yourself">
+        </div>
+
+        <div class="goal3">
+          <p>Three</p>
+          <input type="text" name="goal3" class="medLength goal3Val" placeholder="goal 3" value="">
+          <select name="time3">
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+
+          <select class="time3Min" name="time3">
+            <option value="00">00</option>
+            <option value="05">05</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="25">25</option>
+            <option value="30">30</option>
+            <option value="35">35</option>
+            <option value="40">40</option>
+            <option value="45">45</option>
+            <option value="50">50</option>
+            <option value="55">55</option>
+          </select>
+
+          <select class="time3" name="time3">
+            <option value="AM">AM</option>
+            <option value="PM">PM</option>
+          </select>
+          <input type="text" name="why3" class="fullLength" placeholder="write something to motivate yourself">
+        </div>
+
+        <button type="submit" class="goalsButton">Boom</button>
+        <button type="button" class="cancel">cancel</button>
+      </form>
+
+
+      <!-- Display most recent goal from database -->
+      <section class="results clearfix">
+        <% if (main.length > 0 ) { %>
         <% let last = main.length-1 %>
-
-        <% let completed1 = '000' %>
-        <% let completed2 = '000' %>
-        <% let completed3 = '000' %>
-        <% if (main[last].g1done === true) { %>
-          <%  completed1 = '698058' %>
-        <% } %>
-        <% if (main[last].g2done === true){ %>
-            <% completed2 = '70847B' %>
-        <% } %>
-        <% if (main[last].g3done === true){ %>
-            <% completed3 = 'ADBD77' %>
-        <% } %>
-
-        <span><i class="fab fa-pagelines g1Leaf" style="color:#<%= completed1 %>"></i></span>
+        <span><i class="fab fa-pagelines g1Leaf"></i></span>
         <span class="goal1Hr"><%= main[last].time1[0] %></span>:<span class="goal1Min"><%= main[last].time1[1] %></span><span><%= main[last].time1[2] %> | </span>
         <span class="g1"><%= main[last].goal1 %></span>
-        <p><%= main[last].why1 %></p>
+        <p class="why1"><%= main[last].why1 %></p>
+        <p> Celebrating: <span class="g1Count"><%= main[last].g1Count %></span> Days</p>
 
-        <span><i class="fab fa-pagelines g2Leaf" style="color:#<%= completed2 %>"></i></span>
+        <span><i class="fab fa-pagelines g2Leaf"></i></span>
         <span class="goal2Hr"><%= main[last].time2[0] %></span>:<span class="goal2Min"><%= main[last].time2[1] %></span><span><%= main[last].time2[2] %> | </span>
         <span class="g2"><%= main[last].goal2 %></span>
-        <p><%= main[last].why2 %></p>
+        <p class="why2"><%= main[last].why2 %></p>
+        <p> Celebrating: <span class="g2Count"><%= main[last].g2Count %></span> Days</p>
 
-        <span><i class="fab fa-pagelines g3Leaf" style="color:#<%= completed3 %>"></i></span>
+        <span><i class="fab fa-pagelines g3Leaf"></i></span>
         <span class="goal3Hr"><%= main[last].time3[0] %></span>:<span class="goal3Min"><%= main[last].time3[1] %></span><span><%= main[last].time3[2] %> | </span>
         <span class="g3"><%= main[last].goal3 %></span>
-        <p><%= main[last].why3 %></p>
+        <p class="why3"><%= main[last].why3 %></p>
+        <p> Celebrating: <span class="g3Count"><%= main[last].g3Count %></span> Days</p>
 
         <span class="last">You set these goals on: <span class="setDate"><%= main[last].date %></span></span>
 
-        <span><i class="far fa-trash-alt"></i></span>
-        <span><i class="fas fa-download"></i></span>
-
-
+        <div class="icons clearfix">
+          <span><i class="far fa-trash-alt"></i></span>
+          <a href="/feed"><span><i class="fab fa-slideshare"></i></span></a>
+          <a href="/archive"><span><i class="far fa-share-square"></i></span></a>
+        </div>
+      </section>
       <% } %>
-    </div>
-  </div>
+    </section>
+  </section><!-- ends condition for most current goal in DB-->
 
-
+  <section class="legend clear">
+    <ul class="legendIcons">
+      <li><span><i class="fas fa-camera"></i> : update photo</span></li>
+      <li><span><i class="fas fa-pencil-alt"></i> : edit</span></li>
+      <li><span><i class="fab fa-pagelines"></i> : mark completed</span></li>
+      <li><span><i class="fas fa-plus"></i> : add new goals</span></li>
+      <li><span><i class="far fa-trash-alt"></i>: delete</span></li>
+      <li><span><i class="fab fa-slideshare"></i> : feed</span></li>
+      <li><span><i class="far fa-share-square"></i> : archive</span></li>
+    </ul>
   </section>
 
-  <script type="text/javascript" src="main.js"></script>
-  <script type="text/javascript" src="vanillaCalendar.js"></script>
-  <script>
-  window.addEventListener('load', function () {
-    vanillaCalendar.init({
-      disablePastDays: true
-    });
-  })
-</script>
+
+
+  <script type="text/javascript" src="js/main.js"></script>
+  <script type="text/javascript" src="js/alarm.js"></script>
 </body>

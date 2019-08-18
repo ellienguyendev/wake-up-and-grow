@@ -78,20 +78,16 @@ a {
   float: left;
 }
 
+.floatRight {
+  float:right;
+}
+
 .textCenter {
   text-align: center;
 }
 
 
 /* HEADER */
-header {
-  width: 100%;
-  background-image: url('img/banner.png');
-  background-size: 100%;
-  background-repeat: no-repeat;
-  margin-bottom: 70px;
-}
-
 .topLinks {
   text-align: right;
 }
@@ -104,19 +100,28 @@ header {
   text-transform: uppercase;
 }
 
-h1 {
-  padding-top: 150px;
-  font-family: 'Zhi Mang Xing', cursive;
-  font-size: 100px;
-  letter-spacing: 2px;
-  margin-bottom: 30px;
-}
-
 h2 {
   font-size: 30px;
 }
 
 /* MAIN */
+section{
+  width: 100%;
+  padding: 5% 100px;
+}
+
+.feature1, .feature2 {
+  margin-bottom: 80px;
+}
+
+.feature {
+  width: 65%;
+}
+
+img {
+  width: 30%;
+  border-radius: 50%;
+}
 
 h4 {
   font-size: 25px;
@@ -125,115 +130,8 @@ h4 {
   margin-bottom: 15px;
 }
 
-.main { /* delete */
-  border: 1px solid black;
-}
-
-.calendar {
-  width: 55%;
-  margin: 0 5% 5% 0;
-}
-
-.goals {
-  width: 40%;
-  padding: 2%;
-}
-
-.dateDis {
-  display: inline-block;
-  width: 95%;
-  font-size: 18px;
-  margin-bottom: 25px;
-}
-
-/* WHEN FORM ACTIVE */
-form {
-  width: 100%;
-}
-
-.goals p {
-  margin-bottom: 10px;
-}
-
-input {
-  height: 45px;
-  width: 61%;
-  margin: 0 2% 15px 0;
-}
-
-.fullLength{
-  width: 100%;
-}
-
-input::placeholder{
-  color: rgba(0, 0, 0, 0.6);
-}
-
-button, input {
-  padding: 10px;
-}
-
-select{
-  padding: 10px 8px 10px 14px;
-  overflow: hidden;
-  position: relative;
-}
-
-button, input, select {
-  background-color:inherit;
-  border: 1px solid black;
-  border-radius: 5px;
-  font-size: 18px;
-  font-family: 'Oswald', sans-serif;
-}
-
-button:focus, input:focus, select:focus {
-    outline: 1px solid #000;
-}
-
-.goalsButton {
-  width: 100%;
-  margin-bottom: 15px;
-}
-
-.cancel {
-  border:none;
-  text-transform: uppercase;
-}
-
-.cancel:focus {
-    outline: 1px solid #fff;
-}
-
-/* WHEN RESULTS ACTIVE */
-.results span{
+/* FOOTER */
+h3 {
   font-size: 25px;
-}
-
-.results p {
-  margin-bottom: 25px;
-}
-
-.results .last,.results .setDate  {
-  display: inline-block;
-  font-size: 16px;
   margin-bottom: 15px;
-}
-
-.fa-trash-alt {
-  display: inline-block;
-  width: 92%;
-}
-
-
-.fa-pagelines{
-  font-size: 20px;
-  margin-right: 3px;
-}
-
-
-
-
-.hide {
-  display:none;
 }

@@ -89,24 +89,9 @@ a {
 }
 
 /* HEADER */
-header {
-  width: 100%;
-  background-image: url('img/banner.png');
-  background-size: 100%;
-  background-repeat: no-repeat;
-  margin-bottom: 50px;
-}
-
-h1 {
-  padding-top: 170px;
-  font-family: 'Zhi Mang Xing', cursive;
-  font-size: 100px;
-  letter-spacing: 2px;
-  margin-bottom: 30px;
-}
-
 h2 {
   font-size: 30px;
+  margin-bottom: 50px;
 }
 
 /* CONTAINER */

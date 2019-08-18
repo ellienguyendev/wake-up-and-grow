@@ -10,21 +10,23 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var flash    = require('connect-flash');
 var ObjectId = require('mongodb').ObjectID
+var multer = require('multer');
+var Nexmo = require('nexmo');
 
 var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
-
+var request = require("request-json");
+var url = require("url");
 var configDB = require('./config/database.js');
-
 var db
 
 // configuration ===============================================================
 mongoose.connect(configDB.url, (err, database) => {
   if (err) return console.log(err)
   db = database
-  require('./app/routes.js')(app, passport, db, ObjectId);
+  require('./app/routes.js')(app, passport, db, multer, ObjectId, Nexmo);
 }); // connect to our database
 
 //app.listen(port, () => {

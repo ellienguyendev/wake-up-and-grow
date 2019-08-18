@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Wake Up and Grow</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <link href="https://fonts.googleapis.com/css?family=Zhi+Mang+Xing|Roboto+Condensed|Oswald|Shadows+Into+Light&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/feed.css">
+</head>
+
+<body>
+  <header>
+    <div class="topLinks">
+      <% if (user.local.email) { %>
+      <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+      <% } %>
+    </div>
+    <h1>- Wake Up and Grow -</h1>
+    <nav>
+      <ul>
+        <a href="/main">
+          <li>Home</li>
+        </a>
+
+        <a href="/archive">
+          <li>Archive</li>
+        </a>
+
+        <a href="/main">
+          <li>Profile</li>
+        </a>
+
+        <a href="/feed">
+          <li>Get Inspired</li>
+        </a>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="viewPostsList clear">
+    <ul>
+      <li><a href="/feed">All</a></li>
+      <li><a href="/favorites">Favorites</a></li>
+    </ul>
+  </section>
+
+  <section class="feedContainer">
+    <section class="postFromFeed clear floatLeft">
+      <div class="proPic floatLeft">
+        <img src="/<%= user.local.imageUrl %>" class="propic" alt="Profile Photo">
+      </div>
+        <span class="username"><%= user.local.username %></span>
+      <form action="/postFromFeed" method="post">
+        <input type="text" name="feedMsg" value="">
+        <button type="submit" name="feedButton">Boom</button>
+      </form>
+    </section>
+
+    <section class="allPosts floatLeft">
+      <% for (let i=0; i< feed.length; i++) { %>
+      <section class="userPost">
+        <div class="proPic floatLeft">
+          <img src="/<%= feed[i].userProPic %>" class="propic">
+        </div>
+
+        <h2 class="floatLeft"><%= feed[i].userPosted %></h2>
+
+        <div class="feedMsg clear">
+          <p><%= feed[i].feedMsg %></p>
+        </div>
+
+        <div class="postBottom">
+          <span><%= feed[i].feedDate %></span>
+
+          <% let color= "#000"%>
+          <% for (let j=0; j< feed[i].favoritedBy.length ; j++) { %>
+            <% if (feed[i].favoritedBy.includes(user.local.username)) {%>
+              <% color = "#698058" %>
+            <% } %>
+          <% } %>
+          <span style="color:<%= color %>"><i class="fas fa-star"></i></span>
+
+          <% if (user.local.username !== feed[i].userPosted) { %>
+          <form class="postComment">
+            <input type="text" name="comment"  placeholder="send some love + encouragement">
+            <button type="button" name="commentSubmit"><i class="fas fa-comment-medical commentSubmit"></i></button>
+            <p class="textSent"></p>
+          </form>
+          <% } %>
+
+          <% if (user.local.username === feed[i].userPosted) { %>
+          <a href="#" class="viewComments">View All Comments</a>
+          <span><i class="far fa-trash-alt"></i></span>
+        </div>
+        <% } %> <!-- end of loop-->
+      </section> <!-- end of userPost-->
+      <% } %>
+    </section> <!-- end of allPosts-->
+  </section><!-- end of containing section -->
+
+  <script type="text/javascript" src="/js/feed.js"></script>
+
+
+</body>
