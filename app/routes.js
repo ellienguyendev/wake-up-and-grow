@@ -85,6 +85,31 @@ module.exports = function(app, passport, db, multer, ObjectId, Nexmo) {
     })
   }
 
+  //EDIT user info
+
+  app.put('/saveUserInfo', (req, res) => {
+    var uId = ObjectId(req.session.passport.user)
+    db.collection('users')
+      .findOneAndUpdate({
+        "_id": uId
+      }, {
+        $set: {
+          'local.username': req.body.username,
+          'local.number': req.body.number,
+          'local.optIn': req.body.optIn,
+          'local.email': req.body.email
+        }
+      }, {
+        sort: {
+          _id: -1
+        },
+        upsert: false
+      }, (err, result) => {
+        if (err) return res.send(err)
+        res.send(result)
+      })
+  })
+
   //POST goals to database
   app.post('/goals', (req, res) => {
     var uId = ObjectId(req.session.passport.user)
@@ -375,6 +400,32 @@ module.exports = function(app, passport, db, multer, ObjectId, Nexmo) {
     })
   });
 
+  // USER PAGE ====================
+
+  app.get('/user/:username', isLoggedIn, function(req, res) {
+    var username = req.params.username
+    db.collection('feed').find({
+      "userPosted": username
+    }).toArray((err, result) => {
+      db.collection('users').find({
+        "local.username": username
+      }).toArray((err, userResult) => {
+        console.log(userResult);
+        db.collection('main').find({
+          "username": username
+        }).toArray((err, mainResult) => {
+          console.log(mainResult);
+          if (err) return console.log(err)
+          res.render('user.ejs', {
+            user: userResult,
+            feed: result,
+            main: mainResult
+          })
+        })
+      })
+    })
+  });
+
 
 
   // LOGOUT ==============================
@@ -437,10 +488,6 @@ module.exports = function(app, passport, db, multer, ObjectId, Nexmo) {
     apiKey: '1a7cfdf4',
     apiSecret: 'aw6J8A0qDqt579Xo'
   })
-
-  app.get('/settings', function(req, res) {
-    res.render('settings.ejs')
-  });
 
   //post number and text message to DB
   app.post('/textGoal1', (req, res) => {

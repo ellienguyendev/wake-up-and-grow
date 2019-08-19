@@ -31,6 +31,16 @@
   margin-bottom: 50px;
 }
 
+.usernameDisplay {
+  font-size: 20px;
+  padding-top: 6px;
+  float:left;
+}
+
+.usernameDisplay:hover {
+  color: #698058;
+}
+
 .userPost {
   border-bottom: 2px solid #e2e2e2;
   padding: 4% 0;
@@ -57,6 +67,25 @@ h2 {
   padding: 0 2%;
 }
 
+.postBottom button {
+  border: none;
+  padding: 0 5px;
+}
+
+.showComments {
+  margin-top: 15px;
+  line-height: 1.2rem;
+}
+
+.showComments a{
+  color: #70847B;
+}
+
 .userPost form {
   margin-top: 15px;
+}
+
+.usernameHide{
+  font-size: 1px;
+  color: #fff;
 }

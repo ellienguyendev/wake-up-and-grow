@@ -29,7 +29,7 @@
           <li>Archive</li>
         </a>
 
-        <a href="/profile/<%= user.local.username %>">
+        <a href="/user/<%= user.local.username %>">
           <li>Profile</li>
         </a>
 
@@ -48,26 +48,39 @@
       <div class="proPic floatLeft">
         <img src="/<%= user.local.imageUrl %>" class="propic" alt="Profile Photo">
       </div>
-      <h2 class="floatLeft">Welcome, <span class="firstName"><%= user.local.name %>!</span></h2>
-      <p>Username: <span class="username"><%= user.local.username %></span></p>
-      <p>Phone Number: <span class="phoneNumber"><%= user.local.number %></span></p>
-      <p>Email: <span class="userEmail"><%= user.local.email %></span></p>
-      <p>Update Profile Photo:</p>
-      <form action="/uploadProPic" enctype="multipart/form-data" method="POST">
-        <input type="file" name="file-to-upload" value="">
-        <input type="submit" class="uploadButton" value="Upload">
+      <h2 class="floatLeft">Welcome, <span class="firstName"><%= user.local.name %></span>!</h2>
+      <span class="floatLeft"><i class="fas fa-pencil-alt editPencil"></i></span>
+      <div class="userInfoShow clear">
+        <p>Username: <span class="username"><%= user.local.username %></span></p>
+        <p>Phone Number: <span class="phoneNumber"><%= user.local.number %></span></p>
+        <p>Text Opt-in: <span><%= user.local.optIn %></span></p>
+        <p>Email: <span class="userEmail"><%= user.local.email %></span></p>
+      </div>
+
+        <form class="editUserInfo hide">
+          <p>Username: <span><textarea class="editUsername"><%= user.local.username %></textarea></span></p>
+          <p>Phone Number: <span><textarea class="editNumber"><%= user.local.number %></textarea></span></p>
+          <p>Text Opt-in: <span><select class="optIn" name="editOptIn"></p>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select></span>
+          <p>Email: <span><textarea class="editEmail"><%= user.local.email %></textarea></span></p>
+          <button type="button" class="saveUserInfo">Save</button>
+          <button type="button" class="cancelEdit">Cancel</button>
+        </form>
+
+      <form action="/uploadProPic" enctype="multipart/form-data" method="POST" class="updateProPic">
+        <p>Update Profile Photo:</p>
+        <input type="file" name="file-to-upload" class="floatLeft" value="">
+        <input type="submit" class="uploadButton floatLeft" value="Upload">
       </form>
 
-      <h3>Send a Motivational Message / Affirmation with Friends!</h3>
+      <h3 class="clear">Send a Motivational Message / Affirmation with Friends!</h3>
       <form action="/postFromHome" method="post">
         <input type="text" name="feedMsg" value="">
         <button type="submit" name="feedButton">Boom</button>
       </form>
     </section>
-
-
-
-
 
     <section class="goals main floatLeft clearfix">
       <span class="dateDis">Today is: <span class="date"></span></span>

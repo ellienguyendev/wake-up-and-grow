@@ -29,6 +29,55 @@ cancel.addEventListener('click', function() {
   results.classList.remove('hide')
 })
 
+//brings up editUserInfo forms
+var edit = document.querySelector('.editPencil')
+var editForm = document.querySelector('.editUserInfo')
+var userInfo = document.querySelector('.userInfoShow')
+
+edit.addEventListener('click', function() {
+  editForm.classList.remove('hide')
+  userInfo.classList.add('hide')
+})
+
+var saveUserInfo = document.querySelector('.saveUserInfo')
+saveUserInfo.addEventListener('click', function() {
+  const editUsername = document.querySelector('.editUsername').value
+  const editNumber = document.querySelector('.editNumber').value
+  const optIn = document.querySelector('.optIn').value
+  const editEmail = document.querySelector('.editEmail').value
+
+  fetch('saveUserInfo', {
+      method: 'put',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        'username': editUsername,
+        'number': editNumber,
+        'optIn': optIn,
+        'email': editEmail
+      })
+    })
+    .then(response => {
+      if (response.ok) return response.json()
+    })
+    .then(data => {
+      console.log(data)
+      window.location.reload(true)
+    })
+
+    editForm.classList.add('hide')
+    userInfo.classList.remove('hide')
+})
+
+//cancel editUserInfo
+var cancelEdit = document.querySelector('.cancelEdit')
+cancelEdit.addEventListener('click', function() {
+  editForm.classList.add('hide')
+  userInfo.classList.remove('hide')
+})
+
+
 // variables needed for multiple functions
 var setDate = document.querySelector('.setDate').innerText
 var goal1 = document.querySelector('.g1').innerText

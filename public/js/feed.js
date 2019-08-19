@@ -1,7 +1,9 @@
 var star = document.getElementsByClassName("fa-star");
 var trash = document.getElementsByClassName("fa-trash");
 var commentSubmit = document.querySelectorAll('.commentSubmit')
-
+var viewComments = document.getElementById('viewComments')
+var hideComments = document.getElementById('hideComments')
+var showComments = document.getElementById('showComments')
 
 Array.from(star).forEach(function(element) {
   element.addEventListener('click', function() {
@@ -101,3 +103,12 @@ Array.from(trash).forEach(function(element) {
     })
   });
 });
+
+//show and hide comments
+viewComments.addEventListener('click', function() {
+  showComments.classList.remove('hide')
+})
+
+hideComments.addEventListener('click', function() {
+  showComments.classList.add('hide')
+})

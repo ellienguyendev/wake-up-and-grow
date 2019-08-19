@@ -21,14 +21,15 @@
 
     <nav>
       <ul>
-        <a href="/">
+        <a href="/main">
           <li>Home</li>
         </a>
-        <a href="/main">
-          <li>Goals</li>
+
+        <a href="/archive">
+          <li>Archive</li>
         </a>
 
-        <a href="/main">
+        <a href="/user/<%= user.local.username %>">
           <li>Profile</li>
         </a>
 
@@ -39,9 +40,7 @@
     </nav>
   </header>
 
-
   <section class="container clear">
-
 
       <% for (let i=0; i< main.length; i++) { %>
       <div class="archived floatLeft">
@@ -67,7 +66,7 @@
 
       <span><i class="far fa-trash-alt"></i></span>
       </div>
-      <% } %> <!-- end of loop-->
+      <% } %> <!-- end of archived loop-->
 
     </section> <!-- end of containing archived goals section -->
 

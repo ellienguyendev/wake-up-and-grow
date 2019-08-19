@@ -104,9 +104,9 @@ h1 {
 }
 
 h2 {
-  display: block;
+  display: inline-block;
   font-size: 30px;
-  margin: 14px 40% 15px 2%;
+  margin: 14px 35% 35px 2%;
 }
 
 /* MAIN */
@@ -136,7 +136,9 @@ h4 {
 .proPic {
   width: 50px;
   height: 50px;
+  margin-right: 10px;
 }
+
 .propic {
   width: 120%;
   border-radius: 50%;
@@ -150,7 +152,58 @@ h4 {
   margin-bottom: 25px;
 }
 
-/* WHEN FORM ACTIVE */
+/* USER INFO + FORM */
+.userInfoShow p, .editUserInfo p {
+  margin-bottom: 8px;
+}
+.editUserInfo input, .editUserInfo select, .editUserInfo button  {
+  border: none;
+  color: #698058;
+  padding: 0 0 0 5px;
+  margin: 0;
+  height: 25px;
+}
+
+textarea {
+  border: none;
+  resize: none;
+  font-size: 18px;
+  color: #698058;
+  font-family: 'Roboto Condensed', sans-serif ;
+  padding: 0;
+  margin: 0;
+  height: 18px;
+  display: inline-block;
+}
+
+
+textarea:focus {
+  outline: none;
+}
+
+.cancelEdit {
+  float: right;
+}
+
+.updateProPic p {
+margin-top: 15px;
+}
+
+.updateProPic form {
+  width: 100%;
+}
+.updateProPic input {
+  border: none;
+  width: 24%;
+  margin: 0;
+}
+
+.uploadButton {
+  padding: 0;
+}
+
+
+/* WHEN GOALS FORM ACTIVE */
 form {
   width: 100%;
 }
