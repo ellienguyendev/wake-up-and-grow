@@ -13,9 +13,7 @@
 <body>
   <header>
     <div class="topLinks">
-      <% if (user.local.email) { %>
       <a href="/logout" class="btn btn-default btn-sm">Logout</a>
-      <% } %>
     </div>
 
     <h1>- Wake Up and Grow -</h1>
@@ -30,7 +28,7 @@
           <li>Archive</li>
         </a>
 
-        <a href="/user/<%= user.local.username %>">
+        <a href="/user/<%= user[0].local.username %>">
           <li>Profile</li>
         </a>
 
@@ -49,6 +47,7 @@
           <img src="/<%= user[0].local.imageUrl %>" class="propic" alt="Profile Photo">
         </div>
         <h2 class="floatLeft"> <span class="firstName"><%= user[0].local.name %></span></h2>
+        <h2>@<%= user[0].local.username %></h2>
       </section>
 
       <section class="results clear clearfix">
@@ -83,11 +82,6 @@
     <section class="allPosts floatLeft">
       <% for (let i=0; i< feed.length; i++) { %>
       <section class="userPost">
-        <div class="proPic floatLeft">
-          <img src="/<%= feed[i].userProPic %>" class="propic">
-        </div>
-
-        <h2 class="floatLeft"><%= feed[i].userPosted %></h2>
 
         <div class="feedMsg clear">
           <p><%= feed[i].feedMsg %></p>

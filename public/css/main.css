@@ -105,8 +105,9 @@ h1 {
 
 h2 {
   display: inline-block;
-  font-size: 30px;
-  margin: 14px 35% 35px 2%;
+  width: 78%;
+  font-size: 25px;
+  margin: 16px 0 35px 2%;
 }
 
 /* MAIN */
@@ -156,6 +157,7 @@ h4 {
 .userInfoShow p, .editUserInfo p {
   margin-bottom: 8px;
 }
+
 .editUserInfo input, .editUserInfo select, .editUserInfo button  {
   border: none;
   color: #698058;
@@ -192,13 +194,15 @@ margin-top: 15px;
 .updateProPic form {
   width: 100%;
 }
+
 .updateProPic input {
   border: none;
   width: 24%;
   margin: 0;
+  padding-right: 0;
 }
 
-.uploadButton {
+.updateProPic .uploadButton {
   padding: 0;
 }
 

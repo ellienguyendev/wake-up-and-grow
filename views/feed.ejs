@@ -96,7 +96,7 @@
           <button type="button" id="viewComments">View <%= feed[i].comments.length %> Comments</button>
           <span><i class="far fa-trash-alt"></i></span>
 
-          <div id="showComments" class="showComments">
+          <div id="showComments" class="showComments hide">
             <% for(var j=0; j<feed[i].comments.length; j++) {%>
             <a href="/user/<%= feed[i].comments[j][0] %>">
               <p><span><%= feed[i].comments[j][0] %></span></a><span>: <%= feed[i].comments[j][1] %></span></p>

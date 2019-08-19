@@ -59,7 +59,7 @@ html {
 
 a {
   text-decoration: none;
-  color: #758e55;
+  color: #214937;
 }
 
 /* CLEARFIX TRICK */
@@ -91,7 +91,7 @@ a {
 /* HEADER */
 h2 {
   font-size: 30px;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
 }
 
 /* CONTAINER */
@@ -100,21 +100,36 @@ h2 {
   margin-bottom: 50px;
 }
 
-.quote {
+.leftSec, .leftSecSignup {
   width: 40%;
   margin: 0 3% 0 10%;
-  padding: 2%;
-  border: 2px solid black;
-  border-radius: 10px;
-  font-size: 45px;
+  border-radius: 20px;
+  background-repeat: no-repeat;
+  margin-bottom: 50px;
 }
+
+.leftSec {
+  padding: 200px 0;
+  background-size: cover;
+  background-image: url('../img/loginPhoto.png');
+  background-position: center;
+}
+
+.leftSecSignup {
+  padding: 290px 0;
+  background-size: 120%;
+  background-position: right;
+  background-image: url('../img/signupPhoto.png');
+}
+
+
 
 .login {
   width: 40%;
 }
 
 form {
-  border-bottom: 10px solid #91a693;
+  border-bottom: 10px solid #214937;
   padding-bottom: 15px;
   margin-bottom: 15px;
 }
@@ -144,14 +159,14 @@ input:focus {
 }
 
 button:focus {
-  outline: 0px solid #91a693;
+  outline: 0px solid #214937;
 }
 
 button {
   font-size: 18px;
   color: #fff;
   padding: 10px 15px;
-  background-color: #91a693;
+  background-color: #214937;
   border-radius: 10px;
   text-transform: uppercase;
 }
