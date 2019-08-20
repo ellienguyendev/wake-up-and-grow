@@ -260,7 +260,7 @@ module.exports = function(app, passport, db, multer, ObjectId, Nexmo) {
     var currentUser = req.body.currentUser
     var userPosted = req.body.userPosted
     var userPostedNum
-    var comment = `Love from ${currentUser}:
+    var comment = `Love from @${currentUser}:
 - ${req.body.comment}
 
 replied to: "${req.body.feedMsg}"`
@@ -277,7 +277,7 @@ replied to: "${req.body.feedMsg}"`
         },
         (err, result) => {
           if (err) return console.log(err)
-          console.log('did not send text')
+          console.log('sent text')
         })
     })
   });
