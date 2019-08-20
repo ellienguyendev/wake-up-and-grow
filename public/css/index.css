@@ -105,14 +105,20 @@ section{
   width: 65%;
 }
 
+p {
+  line-height: 1.3em;
+  font-family: 'Lato', sans-serif ;
+}
+
 img {
   width: 30%;
   border-radius: 50%;
+  border: 3px solid #426343;
 }
 
 h4 {
   font-size: 25px;
-  border-bottom: 10px solid #91a693;
+  border-bottom: 10px solid #627C50;
   padding-bottom: 15px;
   margin-bottom: 15px;
 }

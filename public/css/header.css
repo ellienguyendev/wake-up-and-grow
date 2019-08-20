@@ -55,22 +55,3 @@ nav li {
 nav li:first-of-type{
   margin-left: 15px;
 }
-
-/* CSS FOR ARCHIVE PAGE!!!!! */
-.archiveResults {
-  border-bottom: 1px solid #e2e2e2;
-  margin-bottom: 25px;
-}
-
-.archiveResults {
-  display: flex;
-  flex-direction: column-reverse;
-}
-
-.archive {
-  width: 50%;
-}
-
-.archive img {
-  width:80%;
-}

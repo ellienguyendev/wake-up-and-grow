@@ -78,10 +78,15 @@ module.exports = function(passport, Nexmo) {
             const welcomeMsg = `Hi ${req.body.name}! Thank you for signing up with 'Wake Up and Grow' at Demo Day and for supporting Resilient Coders.
 
 Let's stay connected:
-ellienguyendev@gmail.com
-https://ellienguyendev.com
-https://github.com/ellienguyendev
-https://www.linkedin.com/in/ellienguyendev/
+Email: ellienguyendev@gmail.com
+
+Portfolio: http://bit.ly/enguyendev
+
+Github: http://bit.ly/endevgit
+
+LinkedIn: http://bit.ly/endevlinked
+
+App: http://bit.ly/wakeupandgrow
 
 Happy Blooming 🌸`
 

@@ -122,7 +122,9 @@ h2 {
 
 .postComment input {
   width: 89%;
+  border: 2px solid #8D9D62;
 }
 .fa-comment-medical {
   font-size: 30px;
+  color: #8D9D62;
 }

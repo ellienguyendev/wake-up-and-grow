@@ -133,6 +133,7 @@ h4 {
 
 .goals {
   width: 40%;
+  line-height: 1.4em;
 }
 
 .postFromHomeInput {
@@ -351,6 +352,25 @@ button:focus, input:focus, select:focus {
   padding-top: 14px;
 }
 
+/* CSS FOR ARCHIVE PAGE!!!!! */
+.archiveResults {
+  border-bottom: 5px solid #627C50;
+  margin-bottom: 25px;
+}
+
+.archiveResults {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.archive {
+  width: 50%;
+}
+
+.archive img {
+  width:80%;
+}
+
 /* USER PAGE CSS */
 .proPicBig {
   width: 25%;
@@ -378,13 +398,15 @@ button:focus, input:focus, select:focus {
 
 .container .userResults {
   padding-top: 25px;
+  line-height: 1.6em;
 }
 
 .userLeftSec {
   margin: 0 2% 50px 4%;
   padding: 2%;
   line-height: 1.2em;
-  border: 2px solid #365A3F;
+  border: 2px solid #8D9D62;
+  border-radius: 10px;
 }
 
 
