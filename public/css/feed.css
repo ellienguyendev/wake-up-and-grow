@@ -1,3 +1,27 @@
+.postFromFeed h3 {
+  padding: 8px 0;
+}
+
+.feedDisplay {
+  margin-left: 10px;
+  width: 70%;
+  line-height: 1.2em;
+}
+
+.postFromFeedInput {
+  height: 50px;
+  width: 100%;
+  margin-top: 25px;
+}
+
+.postFromFeedButton {
+  border: none;
+}
+
+.wreath {
+  width: 90%;
+}
+
 /* POST FILTERS LIST */
 .viewPostsList {
   float: right;
@@ -21,7 +45,8 @@
 }
 
 .postFromFeed {
-  width: 50%;
+  width: 45%;
+  margin-right: 5%;
 }
 
 .allPosts {
@@ -60,7 +85,8 @@ h2 {
 
 .feedMsg {
   padding: 5% 2%;
-  font-size: 22px;
+  font-size: 20px;
+  line-height: 1.2em;
 }
 
 .postBottom {
@@ -70,6 +96,10 @@ h2 {
 .postBottom button {
   border: none;
   padding: 0 5px;
+}
+
+.feedDate {
+  color: #70847B;
 }
 
 .showComments {
@@ -88,4 +118,11 @@ h2 {
 .usernameHide{
   font-size: 1px;
   color: #fff;
+}
+
+.postComment input {
+  width: 89%;
+}
+.fa-comment-medical {
+  font-size: 30px;
 }

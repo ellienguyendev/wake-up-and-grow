@@ -5,20 +5,12 @@
   <title>Wake Up and Grow</title>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
   <link href="https://fonts.googleapis.com/css?family=Zhi+Mang+Xing|Roboto+Condensed|Oswald|Shadows+Into+Light&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/header.css">
 </head>
 
 <body>
-  <header>
-    <div class="topLinks">
-      <% if (user.local.email) { %>
-      <a href="/logout" class="btn btn-default btn-sm">Logout</a>
-      <% } %>
-    </div>
-
-    <h1>- Wake Up and Grow -</h1>
-
+  <header class="clearfix">
     <nav>
       <ul>
         <a href="/main">
@@ -30,44 +22,48 @@
         </a>
 
         <a href="/user/<%= user.local.username %>">
-          <li>Profile</li>
+          <li>My Profile</li>
         </a>
 
         <a href="/feed">
-          <li>Get Inspired</li>
+          <li>Motivation Wall</li>
+        </a>
+
+        <a href="/logout">
+          <li>Logout</li>
         </a>
       </ul>
     </nav>
   </header>
 
-  <section class="container clear">
+  <section class="archive floatLeft">
+    <img src="/img/wreath.png" alt="">
+  </section>
 
-      <% for (let i=0; i< main.length; i++) { %>
-      <div class="archived floatLeft">
-      <p><%= main[i].date %></p>
-      <span class="clear"><i class="fab fa-pagelines"></i></span>
-      <span><%= main[i].time1[0] %></span>:<span><%= main[i].time1[1] %></span><span><%= main[i].time1[2] %> | </span>
-      <span><%= main[i].goal1 %></span>
-      <p><%= main[i].why1 %></p>
-      <p>Grew: <%= main[i].g1Count %> Days</p>
-
-      <span><i class="fab fa-pagelines"></i></span>
-      <span><%= main[i].time2[0] %></span>:<span><%= main[i].time2[1] %></span><span><%= main[i].time2[2] %> | </span>
-      <span><%= main[i].goal2 %></span>
-      <p><%= main[i].why2 %></p>
-      <p>Grew: <%= main[i].g2Count %> Days</p>
-
-
-      <span><i class="fab fa-pagelines"></i></span>
-      <span><%= main[i].time3[0] %></span>:<span><%= main[i].time3[1] %></span><span><%= main[i].time3[2] %> | </span>
-      <span><%= main[i].goal3 %></span>
-      <p><%= main[i].why3 %></p>
-      <p>Grew: <%= main[i].g3Count %> Days</p>
-
-      <span><i class="far fa-trash-alt"></i></span>
+  <section class="archive goals floatLeft">
+    <section class="results archiveResults clearfix">
+      <% for (var i=0;i< main.length; i++ ) { %>
+      <div class="archiveText">
+        <span><i class="fab fa-pagelines g1Leaf"></i></span>
+        <span class="goal1Hr"><%= main[i].time1[0] %></span>:<span class="goal1Min"><%= main[i].time1[1] %></span><span><%= main[i].time1[2] %> | </span>
+        <span class="g1"><%= main[i].goal1 %></span>
+        <p class="why1 why"><%= main[i].why1 %></p>
+        <p><span class="g1Count">Grew: <%= main[i].g1Count %></span> Days</p>
+        <span><i class="fab fa-pagelines g2Leaf"></i></span>
+        <span class="goal2Hr"><%= main[i].time2[0] %></span>:<span class="goal2Min"><%= main[i].time2[1] %></span><span><%= main[i].time2[2] %> | </span>
+        <span class="g2"><%= main[i].goal2 %></span>
+        <p class="why2 why"><%= main[i].why2 %></p>
+        <p><span class="g2Count">Grew: <%= main[i].g2Count %></span> Days</p>
+        <span><i class="fab fa-pagelines g3Leaf"></i></span>
+        <span class="goal3Hr"><%= main[i].time3[0] %></span>:<span class="goal3Min"><%= main[i].time3[1] %></span><span><%= main[i].time3[2] %> | </span>
+        <span class="g3"><%= main[i].goal3 %></span>
+        <p class="why3 why"><%= main[i].why3 %></p>
+        <p><span class="g3Count">Grew: <%= main[i].g3Count %></span> Days</p>
+        <span class="last">You set these goals on: <span class="setDate"><%= main[i].date %></span></span>
       </div>
-      <% } %> <!-- end of archived loop-->
-
-    </section> <!-- end of containing archived goals section -->
+    </section>
+    <% } %>
+    <!-- end for loop -->
+  </section> <!-- end containing section -->
 
 </body>

@@ -103,13 +103,13 @@ h2 {
 .leftSec, .leftSecSignup {
   width: 40%;
   margin: 0 3% 0 10%;
-  border-radius: 20px;
+  border-radius: 15px;
   background-repeat: no-repeat;
   margin-bottom: 50px;
 }
 
 .leftSec {
-  padding: 200px 0;
+  padding: 170px 0;
   background-size: cover;
   background-image: url('../img/loginPhoto.png');
   background-position: center;
@@ -117,15 +117,21 @@ h2 {
 
 .leftSecSignup {
   padding: 290px 0;
-  background-size: 120%;
-  background-position: right;
+  background-size: 140%;
+  background-position: center;
   background-image: url('../img/signupPhoto.png');
 }
 
-
+.login .btn-lg {
+  padding:10px 15px;
+}
 
 .login {
   width: 40%;
+}
+
+.topLinksLogSign{
+  margin-left: 30px;
 }
 
 form {
@@ -167,7 +173,7 @@ button {
   color: #fff;
   padding: 10px 15px;
   background-color: #214937;
-  border-radius: 10px;
+  border-radius: 8px;
   text-transform: uppercase;
 }
 

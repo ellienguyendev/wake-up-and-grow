@@ -5,19 +5,13 @@
   <title>Wake Up and Grow</title>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
   <link href="https://fonts.googleapis.com/css?family=Zhi+Mang+Xing|Roboto+Condensed|Oswald|Shadows+Into+Light&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/feed.css">
+  <link rel="stylesheet" href="/css/header.css">
 </head>
 
 <body>
-  <header>
-    <div class="topLinks">
-      <% if (user.local.email) { %>
-      <a href="/logout" class="btn btn-default btn-sm">Logout</a>
-      <% } %>
-    </div>
-    <h1>- Wake Up and Grow -</h1>
+  <header class="clearfix">
     <nav>
       <ul>
         <a href="/main">
@@ -28,13 +22,18 @@
           <li>Archive</li>
         </a>
 
-        <a href="/main">
-          <li>Profile</li>
+        <a href="/user/<%= user.local.username %>">
+          <li>My Profile</li>
         </a>
 
         <a href="/feed">
-          <li>Get Inspired</li>
+          <li>Motivation Wall</li>
         </a>
+
+        <a href="/logout">
+          <li>Logout</li>
+        </a>
+      </ul>
     </nav>
   </header>
 
@@ -45,28 +44,35 @@
     </ul>
   </section>
 
+
   <section class="feedContainer">
     <section class="postFromFeed clear floatLeft">
-      <div class="proPic floatLeft">
-        <img src="/<%= user.local.imageUrl %>" class="propic" alt="Profile Photo">
+      <img src="/<%= user.local.imageUrl %>" class="proPicBig floatLeft" alt="Profile Photo">
+
+      <div class="feedDisplay floatLeft">
+        <h3>@<span class="username"><%= user.local.username%></span></h3>
+        <p>This is your space for motivation, support, and encouragement. Be kind to one another and use positive language. Get inspired to start your day with others who are growing alongside you!</p>
       </div>
-      <span class="username"><%= user.local.username %></span>
+
       <form action="/postFromFeed" method="post">
-        <input type="text" name="feedMsg" value="">
-        <button type="submit" name="feedButton">Boom</button>
+        <input type="text" name="feedMsg" value="" class="postFromFeedInput" placeholder="how are you growing today?">
+        <button type="submit" name="feedButton" class="postFromFeedButton">SUBMIT</button>
       </form>
+
+      <img src="/img/wreath.png" alt="" class="wreath">
     </section>
+
 
     <section class="allPosts floatLeft">
       <% for (let i=0; i< feed.length; i++) { %>
-        <% for (let j=0; j< feed[i].favoritedBy.length ; j++) { %>
-        <% if (feed[i].favoritedBy.includes(user.local.username)) {%>
+      <% for (let j=0; j< feed[i].favoritedBy.length ; j++) { %>
+      <% if (feed[i].favoritedBy.includes(user.local.username)) {%>
       <section class="userPost">
         <div class="proPic floatLeft">
           <img src="/<%= feed[i].userProPic %>" class="propic">
         </div>
 
-        <h2 class="floatLeft"><%= feed[i].userPosted %></h2>
+        <a href="/user/<%= feed[i].userPosted %>" class="usernameDisplay floatLeft"><%= feed[i].userPosted %></a>
 
         <div class="feedMsg clear">
           <p><%= feed[i].feedMsg %></p>
@@ -84,9 +90,12 @@
         <% } %>
 
       </section> <!-- end of userPost-->
-      <% } %>  <!-- end of userPost loop-->
-      <% } %><!-- end of if userFavorited -->
-      <% } %><!-- end of userPost loop-->
+      <% } %>
+      <!-- end of userPost loop-->
+      <% } %>
+      <!-- end of if userFavorited -->
+      <% } %>
+      <!-- end of userPost loop-->
 
     </section> <!-- end of allPosts-->
   </section><!-- end of containing section -->

@@ -5,19 +5,13 @@
   <title>Wake Up and Grow</title>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
   <link href="https://fonts.googleapis.com/css?family=Zhi+Mang+Xing|Roboto+Condensed|Oswald|Shadows+Into+Light&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/feed.css">
+    <link rel="stylesheet" href="/css/header.css">
 </head>
 
 <body>
-  <header>
-    <div class="topLinks">
-      <a href="/logout" class="btn btn-default btn-sm">Logout</a>
-    </div>
-
-    <h1>- Wake Up and Grow -</h1>
-
+  <header class="clearfix">
     <nav>
       <ul>
         <a href="/main">
@@ -28,30 +22,34 @@
           <li>Archive</li>
         </a>
 
-        <a href="/user/<%= user[0].local.username %>">
-          <li>Profile</li>
+        <a href="/main %>">
+          <li>My Profile</li>
         </a>
 
         <a href="/feed">
-          <li>Get Inspired</li>
+          <li>Motivation Wall</li>
+        </a>
+
+        <a href="/logout">
+          <li>Logout</li>
         </a>
       </ul>
     </nav>
   </header>
 
+
   <section class="container">
     <% let last = main.length-1 %>
-    <section class="leftSec clear floatLeft">
-      <section class="userInfo">
-        <div class="proPic floatLeft">
-          <img src="/<%= user[0].local.imageUrl %>" class="propic" alt="Profile Photo">
-        </div>
-        <h2 class="floatLeft"> <span class="firstName"><%= user[0].local.name %></span></h2>
-        <h2>@<%= user[0].local.username %></h2>
-      </section>
+    <section class="leftSec clear floatLeft userLeftSec">
+        <img src="/<%= user[0].local.imageUrl %>" class="proPicBig floatLeft" alt="Profile Photo">
+        <div class="userDisplay floatLeft">
+        <h2><%= user[0].local.name%></h2>
+        <h3>@<%= user[0].local.username%></h3>
+      </div>
 
-      <section class="results clear clearfix">
+      <section class="results clear clearfix userResults">
         <% if (main.length > 0 ) { %>
+        <p>Current Goal:</p>
         <span><i class="fab fa-pagelines g1Leaf"></i></span>
         <span class="goal1Hr"><%= main[last].time1[0] %></span>:<span class="goal1Min"><%= main[last].time1[1] %></span><span><%= main[last].time1[2] %> | </span>
         <span class="g1"><%= main[last].goal1 %></span>
@@ -79,7 +77,7 @@
 
 
 
-    <section class="allPosts floatLeft">
+    <section class="allPosts floatLeft userPosts">
       <% for (let i=0; i< feed.length; i++) { %>
       <section class="userPost">
 
@@ -88,7 +86,7 @@
         </div>
 
         <div class="postBottom">
-          <span><%= feed[i].feedDate %></span>
+          <span class="feedDate"><%= feed[i].feedDate %></span>
         </div>
       </section> <!-- end of userPost-->
       <% } %>

@@ -64,7 +64,8 @@ Array.from(commentSubmit).forEach(function(element) {
         body: JSON.stringify({
           'currentUser': currentUser,
           'comment': comment,
-          'userPosted': userPosted
+          'userPosted': userPosted,
+          'feedMsg': feedMsg
         })
       })
       .then(response => {

@@ -8,7 +8,7 @@ document.querySelector('.date').innerHTML = date
 
 
 //brings up empty form when user wants to add goal
-var add = document.querySelector('.fa-plus')
+var add = document.querySelector('.addIcon')
 var form = document.querySelector('.form')
 var results = document.querySelector('.results')
 
@@ -32,11 +32,9 @@ cancel.addEventListener('click', function() {
 //brings up editUserInfo forms
 var edit = document.querySelector('.editPencil')
 var editForm = document.querySelector('.editUserInfo')
-var userInfo = document.querySelector('.userInfoShow')
 
 edit.addEventListener('click', function() {
   editForm.classList.remove('hide')
-  userInfo.classList.add('hide')
 })
 
 var saveUserInfo = document.querySelector('.saveUserInfo')
@@ -67,14 +65,12 @@ saveUserInfo.addEventListener('click', function() {
     })
 
     editForm.classList.add('hide')
-    userInfo.classList.remove('hide')
 })
 
 //cancel editUserInfo
 var cancelEdit = document.querySelector('.cancelEdit')
 cancelEdit.addEventListener('click', function() {
   editForm.classList.add('hide')
-  userInfo.classList.remove('hide')
 })
 
 
@@ -162,7 +158,7 @@ function g3Done() {
 }
 
 //delete posts
-var trash = document.getElementsByClassName("fa-trash-alt");
+var trash = document.getElementsByClassName("trashIcon");
 Array.from(trash).forEach(function(element) {
   element.addEventListener('click', function() {
     fetch('deleteGoal', {

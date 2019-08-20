@@ -4,21 +4,13 @@
 <head>
   <title>Wake Up and Grow</title>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-  <link href="https://fonts.googleapis.com/css?family=Zhi+Mang+Xing|Roboto+Condensed|Oswald|Shadows+Into+Light&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/header.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed|Oswald|Shadows+Into+Light&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/header.css">
 </head>
 
 <body>
-  <header>
-    <div class="topLinks">
-      <% if (user.local.email) { %>
-      <a href="/logout" class="btn btn-default btn-sm">Logout</a>
-      <% } %>
-    </div>
-
-    <h1>- Wake Up and Grow -</h1>
-
+  <header class="clearfix">
     <nav>
       <ul>
         <a href="/main">
@@ -30,11 +22,15 @@
         </a>
 
         <a href="/user/<%= user.local.username %>">
-          <li>Profile</li>
+          <li>My Profile</li>
         </a>
 
         <a href="/feed">
-          <li>Get Inspired</li>
+          <li>Motivation Wall</li>
+        </a>
+
+        <a href="/logout">
+          <li>Logout</li>
         </a>
       </ul>
     </nav>
@@ -43,48 +39,55 @@
   <!-- Main -->
 
   <section class="clearfix container">
-
     <section class="userInfo main floatLeft clear">
       <div class="proPic floatLeft">
         <img src="/<%= user.local.imageUrl %>" class="propic" alt="Profile Photo">
       </div>
       <h2 class="floatLeft">Welcome, <span class="firstName"><%= user.local.name %></span>!</h2>
       <span class="floatLeft"><i class="fas fa-pencil-alt editPencil"></i></span>
-      <div class="userInfoShow clear">
-        <p>Username: <span class="username"><%= user.local.username %></span></p>
-        <p>Phone Number: <span class="phoneNumber"><%= user.local.number %></span></p>
-        <p>Text Opt-in: <span><%= user.local.optIn %></span></p>
-        <p>Email: <span class="userEmail"><%= user.local.email %></span></p>
-      </div>
 
-        <form class="editUserInfo hide">
+      <div class="editUserInfo hide">
+        <form>
           <p>Username: <span><textarea class="editUsername"><%= user.local.username %></textarea></span></p>
           <p>Phone Number: <span><textarea class="editNumber"><%= user.local.number %></textarea></span></p>
           <p>Text Opt-in: <span><select class="optIn" name="editOptIn"></p>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
           </select></span>
           <p>Email: <span><textarea class="editEmail"><%= user.local.email %></textarea></span></p>
           <button type="button" class="saveUserInfo">Save</button>
           <button type="button" class="cancelEdit">Cancel</button>
         </form>
 
-      <form action="/uploadProPic" enctype="multipart/form-data" method="POST" class="updateProPic">
-        <p>Update Profile Photo:</p>
-        <input type="file" name="file-to-upload" class="floatLeft" value="">
-        <input type="submit" class="uploadButton floatLeft" value="--> Upload">
+        <form action="/uploadProPic" enctype="multipart/form-data" method="POST" class="updateProPic">
+          <p>Update Profile Photo:</p>
+          <input type="file" name="file-to-upload" class="floatLeft" value="">
+          <input type="submit" class="uploadButton floatLeft" value=" Upload">
+        </form>
+      </div>
+
+      <h3 class="clear">Send a Message to the Motivation Wall:</h3>
+      <form action="/postFromHome" method="post">
+        <input type="text" name="feedMsg" value="" class="postFromHomeInput" placeholder="share posts to inspire + for others to support!">
+        <button type="submit" name="feedButton" class="postFromHomeButton">SUBMIT</button>
       </form>
 
-      <h3 class="clear">Send a Motivational Message / Affirmation with Friends!</h3>
-      <form action="/postFromHome" method="post">
-        <input type="text" name="feedMsg" value="">
-        <button type="submit" name="feedButton">Boom</button>
-      </form>
-    </section>
+      <section class="legend clear">
+        <ul class="legendIcons">
+          <li><span><i class="fas fa-pencil-alt"></i> : edit user info</span></li>
+          <li><span><i class="fas fa-plus"></i> : add new goals</span></li>
+          <li><span><i class="fab fa-pagelines"></i> : mark completed</span></li>
+          <li><span><i class="far fa-trash-alt"></i>: delete</span></li>
+        </ul>
+      </section>
+
+      <span class="phoneNumber hideText"><%= user.local.number %></span>
+    </section> <!-- end of userInfo Section -->
 
     <section class="goals main floatLeft clearfix">
+      <h3 class="textCenter">Current Goal</h3>
       <span class="dateDis">Today is: <span class="date"></span></span>
-      <span><i class="fas fa-plus"></i></span>
+      <span><i class="fas fa-plus addIcon"></i></span>
 
       <!-- Form comes up when clicking + button -->
       <form action="/goals" method="POST" class="form hide">
@@ -217,50 +220,40 @@
       <section class="results clearfix">
         <% if (main.length > 0 ) { %>
         <% let last = main.length-1 %>
-        <span><i class="fab fa-pagelines g1Leaf"></i></span>
-        <span class="goal1Hr"><%= main[last].time1[0] %></span>:<span class="goal1Min"><%= main[last].time1[1] %></span><span><%= main[last].time1[2] %> | </span>
-        <span class="g1"><%= main[last].goal1 %></span>
-        <p class="why1"><%= main[last].why1 %></p>
-        <p> Celebrating: <span class="g1Count"><%= main[last].g1Count %></span> Days</p>
+        <div class="goalsList floatLeft">
+          <span><i class="fab fa-pagelines g1Leaf"></i></span>
+          <span class="goal1Hr"><%= main[last].time1[0] %></span>:<span class="goal1Min"><%= main[last].time1[1] %></span><span><%= main[last].time1[2] %> | </span>
+          <span class="g1"><%= main[last].goal1 %></span>
+          <p class="why1 why"><%= main[last].why1 %></p>
+        </div>
+          <p class="days floatLeft"><span class="g1Count"><%= main[last].g1Count %></span> Days</p>
 
-        <span><i class="fab fa-pagelines g2Leaf"></i></span>
-        <span class="goal2Hr"><%= main[last].time2[0] %></span>:<span class="goal2Min"><%= main[last].time2[1] %></span><span><%= main[last].time2[2] %> | </span>
-        <span class="g2"><%= main[last].goal2 %></span>
-        <p class="why2"><%= main[last].why2 %></p>
-        <p> Celebrating: <span class="g2Count"><%= main[last].g2Count %></span> Days</p>
+        <div class="goalsList floatLeft">
+          <span><i class="fab fa-pagelines g2Leaf"></i></span>
+          <span class="goal2Hr"><%= main[last].time2[0] %></span>:<span class="goal2Min"><%= main[last].time2[1] %></span><span><%= main[last].time2[2] %> | </span>
+          <span class="g2"><%= main[last].goal2 %></span>
+          <p class="why2 why"><%= main[last].why2 %></p>
+        </div>
+          <p class="days floatLeft"><span class="g2Count"><%= main[last].g2Count %></span> Days</p>
 
-        <span><i class="fab fa-pagelines g3Leaf"></i></span>
-        <span class="goal3Hr"><%= main[last].time3[0] %></span>:<span class="goal3Min"><%= main[last].time3[1] %></span><span><%= main[last].time3[2] %> | </span>
-        <span class="g3"><%= main[last].goal3 %></span>
-        <p class="why3"><%= main[last].why3 %></p>
-        <p> Celebrating: <span class="g3Count"><%= main[last].g3Count %></span> Days</p>
+        <div class="goalsList floatLeft">
+          <span><i class="fab fa-pagelines g3Leaf"></i></span>
+          <span class="goal3Hr"><%= main[last].time3[0] %></span>:<span class="goal3Min"><%= main[last].time3[1] %></span><span><%= main[last].time3[2] %> | </span>
+          <span class="g3"><%= main[last].goal3 %></span>
+          <p class="why3 why"><%= main[last].why3 %></p>
+        </div>
+        <p class="days floatLeft"><span class="g3Count"><%= main[last].g3Count %></span> Days</p>
 
         <span class="last">You set these goals on: <span class="setDate"><%= main[last].date %></span></span>
 
         <div class="icons clearfix">
-          <span><i class="far fa-trash-alt"></i></span>
-          <a href="/feed"><span><i class="fab fa-slideshare"></i></span></a>
-          <a href="/archive"><span><i class="far fa-share-square"></i></span></a>
+          <span><i class="far fa-trash-alt trashIcon"></i></span>
         </div>
       </section>
       <% } %>
     </section>
   </section><!-- ends condition for most current goal in DB-->
 
-  <section class="legend clear">
-    <ul class="legendIcons">
-      <li><span><i class="fas fa-camera"></i> : update photo</span></li>
-      <li><span><i class="fas fa-pencil-alt"></i> : edit</span></li>
-      <li><span><i class="fab fa-pagelines"></i> : mark completed</span></li>
-      <li><span><i class="fas fa-plus"></i> : add new goals</span></li>
-      <li><span><i class="far fa-trash-alt"></i>: delete</span></li>
-      <li><span><i class="fab fa-slideshare"></i> : feed</span></li>
-      <li><span><i class="far fa-share-square"></i> : archive</span></li>
-    </ul>
-  </section>
-
-
-
-  <script type="text/javascript" src="js/main.js"></script>
-  <script type="text/javascript" src="js/alarm.js"></script>
+  <script type="text/javascript" src="/js/main.js"></script>
+  <script type="text/javascript" src="/js/alarm.js"></script>
 </body>

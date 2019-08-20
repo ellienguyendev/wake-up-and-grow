@@ -82,35 +82,20 @@ a {
   text-align: center;
 }
 
-.topLinks {
-  text-align: right;
-}
-
-.btn {
-  padding: 10px 15px;
-  border: 2px solid #000;
-  border-radius: 10px;
-  margin-left: 5px;
-  text-transform: uppercase;
-}
-
-h1 {
-  padding-top: 150px;
-  font-family: 'Zhi Mang Xing', cursive;
-  font-size: 100px;
-  letter-spacing: 2px;
-  margin-bottom: 30px;
-  text-align: center;
-}
-
 h2 {
   display: inline-block;
-  width: 78%;
+  width: 70%;
   font-size: 25px;
   margin: 16px 0 35px 2%;
 }
 
 /* MAIN */
+.goals h3 {
+  letter-spacing: .5em;
+  font-size: 24px;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+}
 h4 {
   font-size: 25px;
   border-bottom: 10px solid #91a693;
@@ -122,17 +107,13 @@ h4 {
   width: 100%;
 }
 
-.main {
-  border: 1px solid black;
-  margin-top: 50px;
-  padding: 2%;
+.userInfo {
+  width: 30%;
+  padding-right: 1%;
+  margin-left: 3%;
+  margin-right: 8%;
+  border-right: 2px solid #e2e2e2;
 }
-
-.userInfo, .goals {
-  width: 40%;
-  margin-right: 5%;
-}
-
 
 .proPic {
   width: 50px;
@@ -146,6 +127,25 @@ h4 {
   border: 3px solid #fff;
 }
 
+.userInfo h3 {
+  margin-bottom: 15px;
+}
+
+.goals {
+  width: 40%;
+}
+
+.postFromHomeInput {
+  width: 95%;
+  height: 80px;
+}
+
+.postFromHomeButton {
+  margin-top: -10px;
+  padding:0;
+  border: none;
+}
+
 .dateDis {
   display: inline-block;
   width: 95%;
@@ -154,8 +154,12 @@ h4 {
 }
 
 /* USER INFO + FORM */
-.userInfoShow p, .editUserInfo p {
+.editUserInfo p {
   margin-bottom: 8px;
+}
+
+.editPencil{
+  padding-top: 18px;
 }
 
 .editUserInfo input, .editUserInfo select, .editUserInfo button  {
@@ -174,17 +178,16 @@ textarea {
   font-family: 'Roboto Condensed', sans-serif ;
   padding: 0;
   margin: 0;
-  height: 18px;
+  height: 20px;
   display: inline-block;
 }
-
 
 textarea:focus {
   outline: none;
 }
 
 .cancelEdit {
-  float: right;
+  margin-left: 10%;
 }
 
 .updateProPic p {
@@ -197,15 +200,31 @@ margin-top: 15px;
 
 .updateProPic input {
   border: none;
-  width: 24%;
-  margin: 0;
+  width: 70%;
+  margin-bottom: 25px;
   padding-right: 0;
 }
 
 .updateProPic .uploadButton {
   padding: 0;
+  width: 20%;
+  color: #204937;
 }
 
+.uploadButton:hover {
+  color: #204937;
+}
+
+.legend {
+  width: 100%;
+  margin-top: 25px;
+}
+
+.legendIcons li {
+  list-style-type: none;
+  color: #214937;
+  margin-bottom: 5px;
+}
 
 /* WHEN GOALS FORM ACTIVE */
 form {
@@ -242,7 +261,7 @@ select{
 
 button, input, select {
   background-color:inherit;
-  border: 1px solid black;
+  border: 2px solid black;
   border-radius: 5px;
   font-size: 18px;
   font-family: 'Oswald', sans-serif;
@@ -281,6 +300,11 @@ button:focus, input:focus, select:focus {
   margin-bottom: 15px;
 }
 
+.why {
+  margin-top: 10px;
+  padding-left: 25px;
+}
+
 .last {
   margin-top: 15px;
 }
@@ -316,23 +340,59 @@ button:focus, input:focus, select:focus {
   color: #ADBD77;
 }
 
-.legend {
-  width: 100%;
-  padding: 5% 8%;
+.goalsList{
+  width: 88%;
 }
 
-.legendIcons {
-  width: 100%;
+.days {
+  display: inline-block;
+  width: 12%;
+  font-size: 18px;
+  padding-top: 14px;
 }
 
-.legendIcons li {
-  list-style-type: none;
-  float: left;
-  color: #698058;
-  margin-right: 4%;
+/* USER PAGE CSS */
+.proPicBig {
+  width: 25%;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  display: block;
+}
+
+.userDisplay {
+  margin-top: 25px;
+}
+
+.userDisplay h2 {
+  font-size: 30px;
+}
+
+.userDisplay h3 {
+  padding-left: 10px;
+}
+
+.userPosts, .leftSec {
+  width: 40%;
+  margin:0;
+}
+
+.container .userResults {
+  padding-top: 25px;
+}
+
+.userLeftSec {
+  margin: 0 2% 50px 4%;
+  padding: 2%;
+  line-height: 1.2em;
+  border: 2px solid #365A3F;
 }
 
 
 .hide {
   display:none;
+}
+
+.hideText {
+  font-size: 1px;
+  color: #fff;
 }

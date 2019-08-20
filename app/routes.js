@@ -260,7 +260,10 @@ module.exports = function(app, passport, db, multer, ObjectId, Nexmo) {
     var currentUser = req.body.currentUser
     var userPosted = req.body.userPosted
     var userPostedNum
-    var comment = `Love from ${currentUser}: ${req.body.comment}`
+    var comment = `Love from ${currentUser}:
+- ${req.body.comment}
+
+replied to: "${req.body.feedMsg}"`
 
     db.collection('users').find({
       "local.username": userPosted
@@ -459,21 +462,6 @@ module.exports = function(app, passport, db, multer, ObjectId, Nexmo) {
       message: req.flash('signupMessage')
     });
   });
-
-  // app.post('/signup', (req, res) => {
-  //   const number = req.body.number
-  //   const firstName = req.body.name
-  //   const welcomeMsg = `Thank you for signing up with Wake Up and Grow, ${firstName}. Happy Blooming`
-  //
-  //   nexmo.message.sendSms(
-  //     '19592065428', number, welcomeMsg, {
-  //       type: 'unicode'
-  //     },
-  //     (err, result) => {
-  //       if (err) return console.log(err)
-  //       console.log('saved to database')
-  //     })
-  // });
 
   app.post('/signup',
     passport.authenticate('local-signup', {
