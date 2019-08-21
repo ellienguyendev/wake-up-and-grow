@@ -108,6 +108,7 @@ Array.from(trash).forEach(function(element) {
 //show and hide comments
 viewComments.addEventListener('click', function() {
   showComments.classList.remove('hide')
+  console.log('working');
 })
 
 hideComments.addEventListener('click', function() {
