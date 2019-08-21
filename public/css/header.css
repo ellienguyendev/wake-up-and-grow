@@ -55,3 +55,32 @@ nav li {
 nav li:first-of-type{
   margin-left: 15px;
 }
+
+/******************************************
+/* MEDIA QUERIES */
+/*******************************************/
+/* MQ FOR MOBILE DEVICE */
+@media only screen and (max-width:767px) {
+  body {
+    padding: 5% 0;
+  }
+
+  header {
+    margin-left: 2%;
+    padding-bottom: 120px;
+    background-position: top;
+  }
+
+  .topLinks {
+  top: 115px;
+  left: 42%;
+  font-size: 15px;
+  border: none;
+  }
+
+} /* END MQ FOR MOBILE DEVICE */
+
+/* END MQ FOR TABLET */
+@media (min-width: 768px) and (max-width: 1023px) {
+
+} /* END MQ FOR TABLET */

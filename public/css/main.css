@@ -418,3 +418,16 @@ button:focus, input:focus, select:focus {
   font-size: 1px;
   color: #fff;
 }
+
+/******************************************
+/* MEDIA QUERIES */
+/*******************************************/
+/* MQ FOR MOBILE DEVICE */
+@media only screen and (max-width:767px) {
+
+} /* END MQ FOR MOBILE DEVICE */
+
+/* MQ FOR TABLET */
+@media (min-width: 768px) and (max-width: 1023px) {
+
+} /* END MQ FOR TABLET */

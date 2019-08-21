@@ -75,11 +75,7 @@ a {
 }
 
 .floatLeft {
-  float: left;
-}
-
-.floatRight {
-  float:right;
+  float:left;
 }
 
 .textCenter {
@@ -97,7 +93,7 @@ section{
   padding: 5% 100px;
 }
 
-.feature1, .feature2 {
+.feature1 {
   margin-bottom: 80px;
 }
 
@@ -113,12 +109,11 @@ p {
 img {
   width: 30%;
   border-radius: 50%;
-  border: 5px solid #426343;
 }
 
 h4 {
   font-size: 25px;
-  border-bottom: 10px solid #627C50;
+  border-bottom: 5px solid #214937;
   padding-bottom: 15px;
   margin-bottom: 15px;
 }
@@ -128,3 +123,40 @@ h3 {
   font-size: 25px;
   margin-bottom: 15px;
 }
+
+/******************************************
+/* MEDIA QUERIES */
+/*******************************************/
+/* MQ FOR MOBILE DEVICE */
+@media only screen and (max-width:767px) {
+.floatLeft{
+  float:none;
+}
+
+.mobileHide {
+  display: none;
+}
+
+h4 {
+  font-size: 22px;
+}
+section{
+  padding: 5%;
+  text-align: center;
+  font-size: 14px;
+}
+
+.feature1 {
+  margin-bottom: 80px;
+}
+
+.feature {
+  width:100%;;
+}
+
+} /* END MQ FOR MOBILE DEVICE */
+
+/* MQ FOR TABLET */
+@media (min-width: 768px) and (max-width: 1023px) {
+
+} /* END MQ FOR TABLET */
