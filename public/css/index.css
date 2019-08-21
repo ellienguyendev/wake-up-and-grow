@@ -124,6 +124,9 @@ h3 {
   margin-bottom: 15px;
 }
 
+.hide {
+  display: none;
+}
 /******************************************
 /* MEDIA QUERIES */
 /*******************************************/
@@ -152,6 +155,15 @@ section{
 
 .feature {
   width:100%;;
+}
+
+.mobileShow {
+  display: block;
+}
+
+img {
+  width: 100%;
+  border-radius: 10px;
 }
 
 } /* END MQ FOR MOBILE DEVICE */

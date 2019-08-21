@@ -186,6 +186,18 @@ a:last-of-type {
 /*******************************************/
 /* MQ FOR MOBILE DEVICE */
 @media only screen and (max-width:767px) {
+  .mobileHide {
+    display: none;
+  }
+
+  .floatLeft {
+    float:none;
+  }
+
+  .login {
+    width: 100%;
+    padding: 0 5%;
+  }
 
 } /* END MQ FOR MOBILE DEVICE */
 

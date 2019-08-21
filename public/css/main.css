@@ -424,6 +424,26 @@ button:focus, input:focus, select:focus {
 /*******************************************/
 /* MQ FOR MOBILE DEVICE */
 @media only screen and (max-width:767px) {
+  .mobileHide {
+    display: none;
+  }
+
+  .floatLeft {
+    float:none;
+  }
+
+  .proPic {
+    float: left;
+  }
+
+  .main {
+    width: 100%;
+    padding: 4%;
+  }
+
+  .dateDis {
+    width: 90%;
+  }
 
 } /* END MQ FOR MOBILE DEVICE */
 

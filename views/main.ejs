@@ -23,7 +23,7 @@
           <li>Archive</li>
         </a>
 
-        <a href="/user/<%= user.local.username %>">
+        <a href="/user/<%= user.local.username %>" class="mobileHide">
           <li>My Profile</li>
         </a>
 
@@ -45,10 +45,10 @@
       <div class="proPic floatLeft">
         <img src="/<%= user.local.imageUrl %>" class="propic" alt="Profile Photo">
       </div>
-      <h2 class="floatLeft">Welcome, <span class="firstName"><%= user.local.name %></span>!</h2>
-      <span class="floatLeft"><i class="fas fa-pencil-alt editPencil"></i></span>
+      <h2 class="floatLeft">Welcome, <a href="/user/<%= user.local.username %>"><span class="firstName"><%= user.local.name %></span></a>!</h2>
+      <span class="floatLeft"><i class="fas fa-pencil-alt editPencil mobileHide"></i></span>
 
-      <div class="editUserInfo hide">
+      <div class="editUserInfo hide mobileHide">
         <form>
           <p>Username: <span><textarea class="editUsername"><%= user.local.username %></textarea></span></p>
           <p>Phone Number: <span><textarea class="editNumber"><%= user.local.number %></textarea></span></p>
@@ -68,13 +68,13 @@
         </form>
       </div>
 
-      <h3 class="clear">Send a Message to the Motivation Wall:</h3>
-      <form action="/postFromHome" method="post">
+      <h3 class="clear mobileHide">Send a Message to the Motivation Wall:</h3>
+      <form action="/postFromHome" method="post" class="mobileHide">
         <input type="text" name="feedMsg" value="" class="postFromHomeInput" placeholder="share posts to inspire + for others to support!">
         <button type="submit" name="feedButton" class="postFromHomeButton">SUBMIT</button>
       </form>
 
-      <section class="legend clear">
+      <section class="legend clear mobileHide">
         <ul class="legendIcons">
           <li><span><i class="fas fa-pencil-alt"></i> : edit user info</span></li>
           <li><span><i class="fas fa-plus"></i> : add new goals</span></li>
