@@ -52,8 +52,8 @@
       <img src="/<%= user.local.imageUrl %>" class="proPicBig floatLeft" alt="Profile Photo">
 
       <div class="feedDisplay floatLeft">
-        <h3>@<span class="username"><%= user.local.username%></span></h3>
-        <p>Get inspired to start your day with others who are growing alongside you! This is your space for motivation, support, and encouragement. Be kind to one another and affirm yourself with goodness.</p>
+        <h3 class= "floatLeft">@<span class="username"><%= user.local.username%></span></h3>
+        <p class="mobileHide">Get inspired to start your day with others who are growing alongside you! This is your space for motivation, support, and encouragement. Be kind to one another and affirm yourself with goodness.</p>
       </div>
 
       <form action="/postFromFeed" method="post">
@@ -61,7 +61,7 @@
         <button type="submit" name="feedButton" class="postFromFeedButton">SUBMIT</button>
       </form>
 
-      <img src="/img/wreath.png" alt="" class="wreath">
+      <img src="/img/wreath.png" alt="" class="wreath mobileHide">
     </section>
 
 
