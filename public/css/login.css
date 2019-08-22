@@ -201,7 +201,13 @@ a:last-of-type {
 
 } /* END MQ FOR MOBILE DEVICE */
 
-/* MQ FOR TABLET */
-@media (min-width: 768px) and (max-width: 1023px) {
+/* END MQ FOR DESKTOP MONITOR */
+@media (min-width: 1500px) and (max-width: 2000px) {
+  .leftSec {
+    padding: 200px 0;
+  }
 
-} /* END MQ FOR TABLET */
+  .leftSecSignup {
+    background-size: 110%;
+  }
+} /* END MQ FOR DESKTOP MONITOR */

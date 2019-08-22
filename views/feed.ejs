@@ -16,11 +16,11 @@
   <header class="clearfix">
     <nav>
       <ul>
-        <a href="/main">
+        <a href="/main" class="monitorHome">
           <li>Home</li>
         </a>
 
-        <a href="/archive">
+        <a href="/archive" class="mobileHide">
           <li>Archive</li>
         </a>
 
@@ -53,7 +53,8 @@
 
       <div class="feedDisplay floatLeft">
         <h3 class= "floatLeft">@<span class="username"><%= user.local.username%></span></h3>
-        <p class="mobileHide">Get inspired to start your day with others who are growing alongside you! This is your space for motivation, support, and encouragement. Be kind to one another and affirm yourself with goodness.</p>
+        <p class="mobileHide clear">Get inspired to start your day with others who are growing alongside you! This is your space for motivation, support, and encouragement. Be kind to one another and affirm yourself with goodness.</p>
+        <h4 class="mobileShow hide clear"></h4>
       </div>
 
       <form action="/postFromFeed" method="post">
@@ -98,16 +99,15 @@
           <% } %>
 
           <% if (user.local.username === feed[i].userPosted) { %>
-          <button type="button" id="viewComments">View <%= feed[i].comments.length %> Comments</button>
+          <button type="button" class="viewComments"><%= feed[i].comments.length %> Comments</button>
           <span><i class="far fa-trash-alt"></i></span>
 
-          <div id="showComments" class="showComments hide">
-            <% for(var j=0; j<feed[i].comments.length; j++) {%>
+          <div class="showComments">
+            <% for(var j=0; j< feed[i].comments.length; j++) { %>
             <a href="/user/<%= feed[i].comments[j][0] %>">
               <p><span><%= feed[i].comments[j][0] %></span>
             </a><span>: <%= feed[i].comments[j][1] %></span></p>
             <% } %>
-            <button type="button" id="hideComments">Hide</button>
           </div>
         </div>
 

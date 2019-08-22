@@ -40,7 +40,7 @@ function alarmSet() {
     const why1 = document.querySelector('.why1').innerText
     const why2 = document.querySelector('.why2').innerText
     const why3 = document.querySelector('.why3').innerText
-    const msg1 = `Rise and shine, ${name}! It's time for ${goal1}. Remember: ${why1}`
+    const msg1 = `Rise and shine, ${name}! It's time for ${goal1}! ${why1}`
     const msg2 = `Nothing can stop you today, onto ${goal2}. ${why2}`
     const msg3 = `All that's left to do is ${goal3}. Thank you for showing up for you. ${why3}// `
 

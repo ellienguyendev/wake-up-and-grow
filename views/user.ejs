@@ -16,11 +16,11 @@
   <header class="clearfix">
     <nav>
       <ul>
-        <a href="/main">
+        <a href="/main" class="monitorHome">
           <li>Home</li>
         </a>
 
-        <a href="/archive">
+        <a href="/archive" class="mobileHide">
           <li>Archive</li>
         </a>
 
@@ -75,8 +75,9 @@
     </section>
 
 
-
+    <h4 class="mobileShow hide postsTitle">Posts to Motivation Wall:</h4>
     <section class="allPosts floatLeft userPosts">
+
       <% for (let i=0; i< feed.length; i++) { %>
       <section class="userPost">
 

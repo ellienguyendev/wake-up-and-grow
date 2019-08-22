@@ -72,15 +72,15 @@ nav li:first-of-type{
   }
 
   .topLinks {
-  top: 110px;
+  top: 125px;
   left: 43%;
   font-size: 15px;
   border: none;
   }
 
   nav ul {
-    top: 110px;
-    left: 20%;
+    top: 125px;
+    left: 28%;
     width: 100%;
     border: none;
   }
@@ -94,7 +94,19 @@ nav li:first-of-type{
 
 } /* END MQ FOR MOBILE DEVICE */
 
-/* END MQ FOR TABLET */
-@media (min-width: 768px) and (max-width: 1023px) {
+/* END MQ FOR DESKTOP MONITOR */
+@media (min-width: 1500px) and (max-width: 2000px) {
+  header {
+    padding-bottom: 450px;
+  }
 
-} /* END MQ FOR TABLET */
+  nav ul {
+    top: 355px;
+    padding-left: 100px;
+  }
+
+  .topLinks {
+  top: 355px;
+  }
+
+} /* END MQ FOR DESKTOP MONITOR */

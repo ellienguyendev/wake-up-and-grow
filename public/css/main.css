@@ -409,7 +409,6 @@ button:focus, input:focus, select:focus {
   border-radius: 10px;
 }
 
-
 .hide {
   display:none;
 }
@@ -428,12 +427,20 @@ button:focus, input:focus, select:focus {
     display: none;
   }
 
+  .mobileShow {
+    display: inline-block;
+  }
+
   .floatLeft {
     float:none;
   }
 
   .proPic {
     float: left;
+  }
+
+  .userInfo {
+    border-right: none;
   }
 
   .main {
@@ -443,6 +450,34 @@ button:focus, input:focus, select:focus {
 
   .dateDis {
     width: 90%;
+  }
+
+  .days {
+    width: 100%;
+    padding: 0;
+  }
+
+  select{
+    padding: 5px 0;
+  }
+
+  input {
+    width: 57%;
+  }
+
+  .userLeftSec {
+    width: 100%;
+    margin: 0 2% 15px 4%;
+    padding: 0 3%;
+    border: none;
+  }
+
+  .userResults, .userPosts {
+    padding: 0;
+  }
+
+  .postsTitle {
+    margin: 0 4%;
   }
 
 } /* END MQ FOR MOBILE DEVICE */

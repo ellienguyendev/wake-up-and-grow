@@ -16,11 +16,11 @@
   <header class="clearfix">
     <nav>
       <ul>
-        <a href="/main">
+        <a href="/main" class="monitorHome">
           <li>Home</li>
         </a>
 
-        <a href="/archive">
+        <a href="/archive" class="mobileHide">
           <li>Archive</li>
         </a>
 
@@ -53,7 +53,8 @@
 
       <div class="feedDisplay floatLeft">
         <h3>@<span class="username"><%= user.local.username%></span></h3>
-        <p>Get inspired to start your day with others who are growing alongside you! This is your space for motivation, support, and encouragement. Be kind to one another and affirm yourself with goodness.</p>
+        <p class="mobileHide">Get inspired to start your day with others who are growing alongside you! This is your space for motivation, support, and encouragement. Be kind to one another and affirm yourself with goodness.</p>
+        <h4 class="mobileShow hide clear"></h4>
       </div>
 
       <form action="/postFromFeed" method="post">
@@ -61,7 +62,7 @@
         <button type="submit" name="feedButton" class="postFromFeedButton">SUBMIT</button>
       </form>
 
-      <img src="/img/wreath.png" alt="" class="wreath">
+      <img src="/img/wreath.png" alt="" class="wreath mobileHide">
     </section>
 
 
@@ -69,29 +70,52 @@
       <% for (let i=0; i< feed.length; i++) { %>
       <% for (let j=0; j< feed[i].favoritedBy.length ; j++) { %>
       <% if (feed[i].favoritedBy.includes(user.local.username)) {%>
-      <section class="userPost">
-        <div class="proPic floatLeft">
-          <img src="/<%= feed[i].userProPic %>" class="propic">
-        </div>
+        <section class="userPost">
+          <div class="proPic floatLeft">
+            <img src="/<%= feed[i].userProPic %>" class="propic">
+          </div>
 
-        <a href="/user/<%= feed[i].userPosted %>" class="usernameDisplay floatLeft"><%= feed[i].userPosted %></a>
+          <a href="/user/<%= feed[i].userPosted %>" class="usernameDisplay floatLeft"><%= feed[i].userPosted %></a>
 
-        <div class="feedMsg clear">
-          <p><%= feed[i].feedMsg %></p>
-        </div>
+          <div class="feedMsg clear">
+            <p><%= feed[i].feedMsg %></p>
+          </div>
 
-        <div class="postBottom">
-          <span><%= feed[i].feedDate %></span>
+          <div class="postBottom">
+            <span class="feedDate"><%= feed[i].feedDate %></span>
 
-          <span style="color:#698058"><i class="fas fa-star"></i></span>
+            <% let color= "#000"%>
+            <% for (let j=0; j< feed[i].favoritedBy.length ; j++) { %>
+            <% if (feed[i].favoritedBy.includes(user.local.username)) {%>
+            <% color = "#698058" %>
+            <% } %>
+            <% } %>
+            <span style="color:<%= color %>"><i class="fas fa-star"></i></span>
 
-          <% if (user.local.username === feed[i].userPosted) { %>
-          <a href="#" class="viewComments">View All Comments</a>
-          <span><i class="far fa-trash-alt"></i></span>
-        </div>
-        <% } %>
+            <% if (user.local.username !== feed[i].userPosted) { %>
+            <form class="postComment">
+              <input type="text" name="comment" placeholder="send some love + encouragement">
+              <button type="button" name="commentSubmit"><i class="fas fa-comment-medical commentSubmit"></i></button>
+              <p class="textSent"></p>
+            </form>
+            <% } %>
 
-      </section> <!-- end of userPost-->
+            <% if (user.local.username === feed[i].userPosted) { %>
+            <button type="button" class="viewComments"><%= feed[i].comments.length %> Comments</button>
+            <span><i class="far fa-trash-alt"></i></span>
+
+            <div class="showComments">
+              <% for(var k=0; k< feed[i].comments.length; k++) { %>
+              <a href="/user/<%= feed[i].comments[k][0] %>">
+                <p><span><%= feed[i].comments[k][0] %></span>
+              </a><span>: <%= feed[i].comments[k][1] %></span></p>
+              <% } %>
+            </div>
+          </div>
+
+          <% } %>
+          <!-- end of loop-->
+        </section> <!-- end of userPost-->
       <% } %>
       <!-- end of userPost loop-->
       <% } %>
