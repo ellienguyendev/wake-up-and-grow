@@ -22,4 +22,4 @@
 2. Navigate to `localhost:9999`
 
 ## Important
-**only application with US phone numbers. do not start with "1", it is included in code.**
+**only applicable with US phone numbers. do not start with "1", it is included in code.**
