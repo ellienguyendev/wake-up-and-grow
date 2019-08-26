@@ -4,20 +4,22 @@
 
 ![alt tag](screenshot.png)
 
+**View in Browser:** bit.ly/wakeupandgrow
+
 ## Design and Development:
 **Tech Used** HTML, CSS, JavaScript, Node, Express, EJS, MongoDB, Passport User Authentication, Nexmo for text messaging
 
 ## Installation
 1. Clone repo
-2. run `npm install`
-3. create `.env` file with:
+2. Run `npm install`
+3. Create `.env` file with:
 **USER_NAME = username**
 **USER_PASSWORD = password**
 **DB_NAME = database name**
 
 ## Usage
-1. run `npm start .env`
-2. Navigate to `localhost:999`
+1. Run `npm start .env`
+2. Navigate to `localhost:9999`
 
 ## Important
 **only application with US phone numbers. do not start with "1", it is included in code.**
