@@ -11,9 +11,9 @@
 1. Clone repo
 2. run `npm install`
 3. create `.env` file with:
-**USER_NAME = <username>**
-**USER_PASSWORD = <password>**
-**DB_NAME = <database name>**
+**USER_NAME = username**
+**USER_PASSWORD = password**
+**DB_NAME = database name**
 
 ## Usage
 1. run `npm start .env`
