@@ -81,7 +81,7 @@ var goal2 = document.querySelector('.g2').innerText
 var goal3 = document.querySelector('.g3').innerText
 
 
-// when completed goal, send to DB + change color of leaf
+// when completed goal, send to DB + update streak
 var g1Leaf = document.querySelector('.g1Leaf');
 g1Leaf.onclick = g1Done
 
@@ -157,7 +157,7 @@ function g3Done() {
     })
 }
 
-//delete posts
+//delete goals
 var trash = document.getElementsByClassName("trashIcon");
 Array.from(trash).forEach(function(element) {
   element.addEventListener('click', function() {

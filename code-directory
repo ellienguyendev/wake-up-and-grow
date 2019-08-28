@@ -1,0 +1,20 @@
+Mysterious Codes and Where to Find Them:
+
+passport.js:
+- new sign-up inputs
+- sign-up texts (edit message)
+
+user.js:
+- sign-up user schema to database
+
+alarm.js:
+- goals text reminder APIs
+- alarm sounds in application
+
+main.js:
+- goal reminder texts to users (edit message)
+
+routes.js
+- text sent to users from Motivation Wall (edit message)
+
+** x.js correlates with x.ejs

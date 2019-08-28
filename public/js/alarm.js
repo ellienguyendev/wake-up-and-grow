@@ -3,7 +3,7 @@ var sound = new Audio("https://freesound.org/data/previews/170/170613_7037-lq.mp
 sound.loop = false;
 
 function alarmSet() {
-  // calcutate current time then compare to goalTime and play sound when equal
+  // calcutate current time then compare to goalTime. play sound and send text when equal
   setInterval(function() {
     var today = new Date();
     var hr = today.getHours()

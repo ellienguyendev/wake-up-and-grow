@@ -477,7 +477,7 @@ replied to: "${req.body.feedMsg}"`
     apiSecret: 'aw6J8A0qDqt579Xo'
   })
 
-  //post number and text message to DB
+  //send text reminders to users
   app.post('/textGoal1', (req, res) => {
     res.send(req.body);
     const number = req.body.number

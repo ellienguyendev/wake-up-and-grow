@@ -21,5 +21,6 @@
 1. Run `npm start .env`
 2. Navigate to `localhost:9999`
 
-## Important
-**only applicable with US phone numbers. do not start with "1", it is included in code.**
+## Notes
+1. only applicable with US phone numbers. do not start with "1", it is included in code.
+2. look in "code-directory" to find where pieces of code are located

@@ -2,6 +2,7 @@ var star = document.getElementsByClassName("fa-star");
 var trash = document.getElementsByClassName("fa-trash");
 var commentSubmit = document.querySelectorAll('.commentSubmit')
 
+//favorite posts on motivation wall
 Array.from(star).forEach(function(element) {
   element.addEventListener('click', function() {
     const currentUser = document.querySelector('.username').innerHTML
@@ -31,7 +32,7 @@ Array.from(star).forEach(function(element) {
   });
 });
 
-
+//send comments to other users --> add to comment [] in document and send text to user who posted
 Array.from(commentSubmit).forEach(function(element) {
   element.addEventListener('click', function() {
     const currentUser = document.querySelector('.username').innerHTML

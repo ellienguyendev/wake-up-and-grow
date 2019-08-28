@@ -73,7 +73,7 @@ module.exports = function(passport, Nexmo) {
             apiSecret: 'aw6J8A0qDqt579Xo'
           })
 
-          // save the user
+          // save the user and send sign-up text
           newUser.save(function(err) {
             const welcomeMsg = `Hi ${req.body.name}! Thank you for signing up with 'Wake Up and Grow' at Demo Day and for supporting Resilient Coders.
 
